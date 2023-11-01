@@ -5,6 +5,7 @@ import Contact from '../Pages/Contact'
 import About from '../Pages/About'
 import Donate from '../Pages/Donate'
 import Voluntears from '../Pages/Voluntears'
+import PaymentPage from '../Components/PaymentPage'
 const MainRoutes = () => {
   return (
     <div>
@@ -14,7 +15,8 @@ const MainRoutes = () => {
             <Route path='/donate-us' element={<Donate />} />
             <Route path='/voluntears' element={<Voluntears />} />
             <Route path='/contact' element={<Contact />} />
-        </Routes>
+            <Route path="/payment" element={<PaymentPage />}/>
+         </Routes>
     </div>
   )
 }
