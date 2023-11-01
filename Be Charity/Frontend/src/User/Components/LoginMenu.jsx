@@ -111,7 +111,7 @@ onClose()
         <PopoverTrigger>
           <Button as="div" border="none" variant="link">
             <Image
-              src="https://w1.pngwing.com/pngs/386/684/png-transparent-face-icon-user-icon-design-user-profile-share-icon-avatar-black-and-white-silhouette.png"
+              src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png"
               w={['50%', '100%', '100%']}
               m={['auto', 0]}
               alt="User Icon"
