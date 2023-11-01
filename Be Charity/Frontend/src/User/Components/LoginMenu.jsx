@@ -119,7 +119,7 @@ onClose()
             />
           </Button>
         </PopoverTrigger>
-       {1?<PopoverContent w={"90%"} border={"none"}  m="5px" p="10px" borderRadius={"15px"}>
+       {false?<PopoverContent w={"90%"} border={"none"}  m="5px" p="10px" borderRadius={"15px"}>
           <PopoverArrow />
           <PopoverCloseButton />
           <PopoverHeader border="none" fontWeight={"bold"}  color="#2b3954"

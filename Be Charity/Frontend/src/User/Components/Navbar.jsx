@@ -157,6 +157,7 @@ const MobileNavItem = ({ label, href,src }) => {
   return (
     <Stack spacing={4} >
       <Box
+     bg={"transparent"}
         py={2}
         as="a"
         href={href}
