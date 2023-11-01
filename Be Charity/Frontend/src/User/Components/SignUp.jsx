@@ -1,0 +1,121 @@
+import React, { useState } from 'react';
+import {
+  Button,
+  Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useToast,
+} from '@chakra-ui/react';
+
+
+
+
+
+export const SignupModal = ({onOpens,LetClose}) => {
+    const toast = useToast()
+
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSignup = () => {
+    // Perform signup logic here, e.g., call an API
+  toast({
+    title: 'Account Created Succesfully',
+    position: 'top',
+    description: "You can login to our website",
+    status: 'success',
+    duration: 2000,
+    isClosable: true,
+  })
+  setFormData({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  })
+  LetClose();
+  };
+
+  return (
+    <Modal isOpen={onOpens} onClose={LetClose} size="sm" isCentered >
+      <ModalOverlay />
+      <ModalContent fontFamily={"poppins"} borderRadius={"15px"}>
+     
+        <ModalHeader border="none" fontWeight={"bold"}  color="#2b3954"
+              fontSize="25" textAlign={"center"}>Sign Up</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Input
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+        </ModalBody>
+
+        <ModalFooter>
+
+          <Button
+              colorScheme="white"
+              fontSize="16"
+              w="100%"
+              fontWeight="400"
+              bg="#2b3954"
+              _hover={{ bgColor: "#e89f22" }}
+              letterSpacing={"1px"}
+              onClick={handleSignup}
+              
+            >
+              SIGN UP
+            </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
