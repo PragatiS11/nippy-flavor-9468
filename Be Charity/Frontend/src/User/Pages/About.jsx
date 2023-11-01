@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from "../Components/Navbar"
 import { Box, Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
-import BGImage from "../Assests/ngo2-slider-bg.png"
+import Navbar from "../Components/Navbar"
+import BGImage from "../Assests/ngo2-sectionbg2.png"
+import AboutCenter from '../Components/AboutCenter'
 import CategoryComponent from '../Components/CategoryComponent'
-import NumberChange from '../Components/NumberChange'
-const HomePage = () => {
+const About = () => {
   return (
-<>
+    <>
 <Box fontFamily={"Poppins"}    style={{
       backgroundImage: `url('${BGImage}')`,
       backgroundSize: "100% 100%",
@@ -14,19 +14,16 @@ const HomePage = () => {
       backgroundRepeat: "no-repeat"
     }}>
       <Navbar />
-      <Box mt={"150px"} ml={"120px"} w={"500px"}>
-      <Text fontWeight={'500'} fontSize={"44"} lineHeight={"50px"}  fontFamily={'DM Serif Display'}>Medical care and  education for children</Text>
-       <Text color={"#666666"} fontWeight={'300'} m={"20px 0"}>With a global team dedicated to trust and safety, we’ve successfully managed fundraisers worldwide for more than a decade. Don’t worry about a thing, we’ve got you covered</Text>
-     <Flex w={"250px"} justifyContent={"space-between"} alignItems={"center"}>
-      <Button borderRadius={"0"} letterSpacing={"1px"} fontWeight={'300'} bg={"black"} color={"white"} colorScheme='black'>DONATE US</Button>
-      <Button style={{textDecoration:"none"}} colorScheme='black'  variant='link' fontWeight={'400'} >About Us ></Button>
-     </Flex>
-      </Box>
-      
-    </Box>
-<CategoryComponent />
-<NumberChange />
-<Box fontFamily={"Poppins"}   m={"100px"} style={{
+      <Flex  alignItems={"center"} m={"auto"} h={"350px"} w={"65%"}>
+        <Box>
+        <Text fontWeight={'500'} fontSize={"55"} lineHeight={"55px"}  fontFamily={'DM Serif Display'}>Curabitur sed iaculis dolor, non congue ligula. Maecenas imperdiet ante eget hendrerit posuere.</Text>
+        </Box>
+     
+
+      </Flex>
+      <AboutCenter />
+      <CategoryComponent />
+      <Box fontFamily={"Poppins"}   m={"100px"} style={{
       backgroundImage: `url('https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-wrapbg1.jpg')`,
       backgroundSize: "cover",
    height:"450px",
@@ -47,8 +44,9 @@ but everyone can help someone.</Text>
       </Flex>
 
       </Box>
+    </Box>
 </>
   )
 }
 
-export default HomePage
+export default About

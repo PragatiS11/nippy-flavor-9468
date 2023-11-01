@@ -14,6 +14,7 @@ import {
   InputLeftElement,
   Image,
   Center,
+  Heading,
 } from '@chakra-ui/react'
 import {
   HamburgerIcon,
@@ -23,14 +24,15 @@ import { FaSearch} from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
 
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
 
 const Navigate=useNavigate();
   return (
-    <Box  fontFamily={"Poppins"} mt={[0,"5px"]}>
-      <Flex   w={["100%","100%","95%"]} m={"auto"}
-        bg={"white"}
+    <Box  >
+      <Flex    w={["100%","100%","95%"]} m={"auto"}
+        bg={"transparent"}
   
         minH={'60px'}
         py={{ base: 2 }}
@@ -60,7 +62,7 @@ const Navigate=useNavigate();
          
            
          
-<Flex w={"80%"} justifyContent={"space-evenly"} alignItems={"center"} display={useBreakpointValue({base:"none",md:"flex"})}>
+<Flex w={"80%"} justifyContent={"space-around"} alignItems={"center"} display={useBreakpointValue({base:"none",md:"flex"})}>
 {NAV_ITEMS?.map((el,ind)=>{
 return <>
   <Stack spacing={4} >
@@ -131,6 +133,7 @@ return <>
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
+     
     </Box>
   )
 }
@@ -191,32 +194,22 @@ const MobileNavItem = ({ label, href,src }) => {
 const NAV_ITEMS = [
   {
     label: 'Home',
-    src:'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category1.svg',
- href:"/Chairs"
+ href:"/"
   },
   {
-    label: 'Who we are',
-    src:'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category2.svg',
-    href:"/Beds"
+    label: 'About Us',
+    href:"/about-us"
   },
   {
-    label: 'What we do',
-    href:"/Tables",
-    src: 'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category3.svg',
-  },
-  {
-    label: 'Stories',
-    href:"/Desks",
-    src: 'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category4.svg',
+    label: 'Donate Us',
+    href:"/donate-us"
   },
   {
     label: 'Voluntears',
-    href:"/Cabinets",
-    src: 'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category5.svg',
+    href:"/voluntears"
   },
   {
     label: 'Contact',
-    href:"/Lighting",
-    src: 'https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-category6.svg',
+    href:"/contact"
   }
 ];
