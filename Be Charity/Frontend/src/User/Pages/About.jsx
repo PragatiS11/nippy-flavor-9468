@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar"
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import AboutCenter from '../Components/AboutCenter'
 import CategoryComponent from '../Components/CategoryComponent'
+import Footer from '../Components/Footer'
 const About = () => {
   return (
     <>
@@ -44,7 +45,9 @@ but everyone can help someone.</Text>
       </Flex>
 
       </Box>
+      <Footer />
     </Box>
+   
 </>
   )
 }
