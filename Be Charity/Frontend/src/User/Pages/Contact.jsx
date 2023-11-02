@@ -16,12 +16,13 @@ import Footer from "../Components/Footer";
 const Contact = () => {
   return (
     <>
-      <Box
+      <Box color={"black"}
         fontFamily={"Poppins"}
         style={{
           backgroundImage: `url('${BGImage}')`,
-          backgroundSize: "100% 100%",
+          backgroundSize: "cover",
           height: "720px",
+          backgroundPosition:"center",
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -121,7 +122,7 @@ const Contact = () => {
           w={"100%"}
           border={"none"}
           borderBottom={"1px solid black"}
-          placeholder="Your Name"
+          placeholder="Your Name" 
         />
         <Input
           variant="flushed"

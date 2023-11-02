@@ -8,12 +8,13 @@ import Footer from '../Components/Footer'
 const About = () => {
   return (
     <>
-<Box fontFamily={"Poppins"}    style={{
-      backgroundImage: `url('${BGImage}')`,
-      backgroundSize: "100% 100%",
-   height:"720px",
-      backgroundRepeat: "no-repeat"
-    }}>
+<Box fontFamily={"Poppins"} color={"black"}      style={{
+          backgroundImage: `url('${BGImage}')`,
+          backgroundSize: "cover",
+          height: "720px",
+          backgroundPosition:"center",
+          backgroundRepeat: "no-repeat",
+        }}>
       <Navbar />
       <Flex  alignItems={"center"} m={"auto"} h={"350px"} w={"65%"}>
         <Box>

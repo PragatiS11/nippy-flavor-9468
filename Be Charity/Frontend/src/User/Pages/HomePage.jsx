@@ -12,16 +12,17 @@ const HomePage = () => {
         fontFamily={"Poppins"}
         style={{
           backgroundImage: `url('${BGImage}')`,
-          backgroundSize: "100% 100%",
-          height: "720px",
+          backgroundSize: "cover",
+          backgroundPosition:"center",
           backgroundRepeat: "no-repeat",
         }}
+        h={["300px","720px"]}
       >
         <Navbar />
-        <Box mt={"150px"} ml={"120px"} w={"500px"}>
+        <Box mt={"150px"} ml={"120px"} w={["100px","500px"]}>
           <Text
             fontWeight={"500"}
-            fontSize={"44"}
+            fontSize={["30","44"]}
             lineHeight={"50px"}
             fontFamily={"DM Serif Display"}
           >

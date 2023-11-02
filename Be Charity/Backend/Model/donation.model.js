@@ -2,14 +2,20 @@ const mongoose=require("mongoose");
 
 const DonationSchema=mongoose.Schema({
     title:String,
-    body:String,
-    device:String,
-   no_of_comments:Number,
-   username:String,
-  user_id:String
+    category:String,
+description:String,
+    goal: Number,
+    image: String,
+    current_funds: Number,
+    beneficiary: Object,
+    organizer: Object,
+    budget_breakdown: Array,
+    donators: Array,
+    faq: Object,
+    updates:Array 
 },{versionKey:false});
 
-const DonationMOdel=mongoose.model("post",DonationSchema);
+const DonationMOdel=mongoose.model("donation",DonationSchema);
 
 module.exports={
     DonationMOdel

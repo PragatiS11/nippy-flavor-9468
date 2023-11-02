@@ -15,7 +15,7 @@ const auth=async(req,res,next)=>{
                     req.body.username=decoded.username;
                     next();
                 }else{
-                    return res.status(200).send({msg:'Unauthorized'})
+                    return res.status(200).send({msg:'UnAuthorized'})
                 }
               
                

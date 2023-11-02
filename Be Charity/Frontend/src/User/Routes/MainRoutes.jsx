@@ -13,7 +13,7 @@ const MainRoutes = () => {
             <Route path='/' element={<HomePage />} />
             <Route path='/about-us' element={<About />} />
             <Route path='/donate-us' element={<Donate />} />
-            <Route path='/voluntears' element={<Voluntears />} />
+            <Route path='/volunteers' element={<Voluntears />} />
             <Route path='/contact' element={<Contact />} />
             <Route path="/payment" element={<PaymentPage />}/>
          </Routes>
