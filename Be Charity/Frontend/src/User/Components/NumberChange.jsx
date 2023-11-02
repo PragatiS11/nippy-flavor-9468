@@ -39,9 +39,9 @@ const statData = [
 
 const NumberChange = () => {
   return (
-    <Stack  w={"80%"} direction={{ base: 'column', md: 'row' }} m={"100px auto"} fontFamily={"Poppins"} color={"#0b3954"}>
+    <Stack  w={"80%"} direction={{ base: 'column', md: 'row' }} m={"100px auto"} fontFamily={"Poppins"} color={"black"}>
      
-      <Flex p={8}  w={"60%"} align="center" justify="center">
+      <Flex p={8}  w={"60%"} align="center" justify="center" color={"black"}>
         <Flex direction="column">
           <Text fontWeight="500" fontSize={["40","52"]} mb={2}>
             <Box  display="inline-block" position="relative" fontWeight={'500'} fontSize={"55"} lineHeight={"55px"}  fontFamily={'DM Serif Display'}>

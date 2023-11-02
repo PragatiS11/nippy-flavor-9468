@@ -4,15 +4,17 @@ import Navbar from "../Components/Navbar"
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import AboutCenter from '../Components/AboutCenter'
 import CategoryComponent from '../Components/CategoryComponent'
+import Footer from '../Components/Footer'
 const About = () => {
   return (
     <>
-<Box fontFamily={"Poppins"}    style={{
-      backgroundImage: `url('${BGImage}')`,
-      backgroundSize: "100% 100%",
-   height:"720px",
-      backgroundRepeat: "no-repeat"
-    }}>
+<Box fontFamily={"Poppins"} color={"black"}      style={{
+          backgroundImage: `url('${BGImage}')`,
+          backgroundSize: "cover",
+          height: "720px",
+          backgroundPosition:"center",
+          backgroundRepeat: "no-repeat",
+        }}>
       <Navbar />
       <Flex  alignItems={"center"} m={"auto"} h={"350px"} w={"65%"}>
         <Box>
@@ -44,7 +46,9 @@ but everyone can help someone.</Text>
       </Flex>
 
       </Box>
+      <Footer />
     </Box>
+   
 </>
   )
 }

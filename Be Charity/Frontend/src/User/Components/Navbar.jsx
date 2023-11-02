@@ -157,6 +157,7 @@ const MobileNavItem = ({ label, href,src }) => {
   return (
     <Stack spacing={4} >
       <Box
+     bg={"transparent"}
         py={2}
         as="a"
         href={href}
@@ -205,8 +206,8 @@ const NAV_ITEMS = [
     href:"/donate-us"
   },
   {
-    label: 'Voluntears',
-    href:"/voluntears"
+    label: 'Volunteers',
+    href:"/volunteers"
   },
   {
     label: 'Contact',

@@ -11,15 +11,18 @@ import Adminpage from "../../Admin/Pages/Adminpage";
 const MainRoutes = () => {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about-us" element={<About />} />
-        <Route path="/donate-us" element={<Donate />} />
-        <Route path="/voluntears" element={<Voluntears />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/admin" element={<Adminpage />}></Route>
-      </Routes>
+
+
+       <Routes>
+           <Route path="/admin" element={<Adminpage />}></Route>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/about-us' element={<About />} />
+            <Route path='/donate-us' element={<Donate />} />
+            <Route path='/volunteers' element={<Voluntears />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path="/payment" element={<PaymentPage />}/>
+         </Routes>
+
     </div>
   );
 };
