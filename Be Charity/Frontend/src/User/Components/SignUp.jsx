@@ -11,6 +11,7 @@ import {
   ModalCloseButton,
   useToast,
 } from '@chakra-ui/react';
+import { RegisterRequest } from '../Utilis/api';
 
 
 
@@ -21,10 +22,13 @@ export const SignupModal = ({onOpens,LetClose}) => {
 
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    name:'',
+    email:'',
+    password:'',
+    city:'',
+    image:"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png",
+    isAdmin:false,
+    isVolunteers:false
   });
 
   const handleChange = (e) => {
@@ -36,52 +40,58 @@ export const SignupModal = ({onOpens,LetClose}) => {
   };
 
   const handleSignup = () => {
-    // Perform signup logic here, e.g., call an API
-  toast({
-    title: 'Account Created Succesfully',
-    position: 'top',
-    description: "You can login to our website",
-    status: 'success',
-    duration: 2000,
-    isClosable: true,
+   
+  RegisterRequest(formData).then(res=>{
+    
+    toast({
+      title: res.data.msg,
+      position: 'top',
+      description: "You can login to our website",
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
+    
+ 
   })
+   
   setFormData({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    name:'',
+    email:'',
+    password:'',
+    city:'',
+    image:"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png",
+    isAdmin:false,
+    isVolunteers:false
   })
   LetClose();
   };
 
   return (
-    <Modal isOpen={onOpens} onClose={LetClose} size="sm" isCentered >
+    <Modal isOpen={onOpens} onClose={LetClose} size="sm"  isCentered >
       <ModalOverlay />
-      <ModalContent fontFamily={"poppins"} borderRadius={"15px"}>
+      <ModalContent fontFamily={"poppins"} color={"black"} borderRadius={"0px"}>
      
-        <ModalHeader border="none" fontWeight={"bold"}  color="#2b3954"
-              fontSize="25" textAlign={"center"}>Sign Up</ModalHeader>
+        <ModalHeader border="none" fontWeight={"bold"}  
+              fontSize="28" textAlign={"center"}  fontFamily={"DM Serif Display"} letterSpacing={"1px"} >Create an account</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Input
-            name="firstName"
-            placeholder="First Name"
-            value={formData.firstName}
+           variant="flushed"
+            name="name"
+            placeholder="Name"
+            borderBottom={"1px solid black"}
+            value={formData.name}
             onChange={handleChange}
             marginBottom={4}
             alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
           />
+          
           <Input
-            name="lastName"
-            placeholder="Last Name"
-            value={formData.lastName}
-            onChange={handleChange}
-            marginBottom={4}
-            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
-          />
-          <Input
+           variant="flushed"
             name="email"
             type="email"
+            borderBottom={"1px solid black"}
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
@@ -89,6 +99,18 @@ export const SignupModal = ({onOpens,LetClose}) => {
             alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
           />
           <Input
+           variant="flushed"
+           borderBottom={"1px solid black"}
+           name="city"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+           variant="flushed"
+           borderBottom={"1px solid black"}
             name="password"
             type="password"
             placeholder="Password"
@@ -101,19 +123,27 @@ export const SignupModal = ({onOpens,LetClose}) => {
 
         <ModalFooter>
 
-          <Button
-              colorScheme="white"
+      
+            <Button
+           
               fontSize="16"
-              w="100%"
-              fontWeight="400"
-              bg="#2b3954"
-              _hover={{ bgColor: "#e89f22" }}
+              w="90%"
+     
+              bg="#79ab2f"
+              _hover={{ bgColor: "#df8c09" }}
               letterSpacing={"1px"}
               onClick={handleSignup}
-              
-            >
-              SIGN UP
-            </Button>
+            m={"10px auto"}
+        
+       
+            borderRadius={"0"}
+            fontWeight={"300"}
+          
+            color={"white"}
+            colorScheme="black"
+          >
+            SIGN UP
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

@@ -206,8 +206,8 @@ const NAV_ITEMS = [
     href:"/donate-us"
   },
   {
-    label: 'Voluntears',
-    href:"/voluntears"
+    label: 'Volunteers',
+    href:"/volunteers"
   },
   {
     label: 'Contact',
