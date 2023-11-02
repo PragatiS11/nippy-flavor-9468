@@ -5,8 +5,11 @@ import Contact from "../Pages/Contact";
 import About from "../Pages/About";
 import Donate from "../Pages/Donate";
 import Voluntears from "../Pages/Voluntears";
-import PaymentPage from "../Components/PaymentPage";
+import PaymentPage from "../Pages/PaymentPage";
 import Adminpage from "../../Admin/Pages/Adminpage";
+import DonationPage from "../Pages/DonationPage";
+import ThankYou from "../Pages/Thankyou";
+import SingleDonationPage from "../Pages/SingleDonationPage";
 
 const MainRoutes = () => {
   return (
@@ -16,6 +19,10 @@ const MainRoutes = () => {
        <Routes>
            <Route path="/admin" element={<Adminpage />}></Route>
             <Route path='/' element={<HomePage />} />
+            <Route path='/donation' element={<DonationPage />} />
+            <Route path='/thankyou' element={<ThankYou />} />
+            <Route path='/payment' element={<PaymentPage />} />
+            <Route path='/donation/single' element={<SingleDonationPage />} />
             <Route path='/about-us' element={<About />} />
             <Route path='/donate-us' element={<Donate />} />
             <Route path='/volunteers' element={<Voluntears />} />

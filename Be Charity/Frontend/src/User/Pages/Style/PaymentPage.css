@@ -1,0 +1,10 @@
+
+@keyframes cursor-blink {
+    0%, 100% {
+      border-color: transparent; /* Cursor is invisible at 0% and 100% of the animation */
+    }
+    50% {
+      border-color: black; /* Cursor is visible at 50% of the animation */
+    }
+  }
+  
