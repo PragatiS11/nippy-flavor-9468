@@ -4,9 +4,47 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Chart from "react-apexcharts";
 
+const data = [
+  {
+    category: "Lithuania",
+    value: 501.9,
+  },
+  {
+    category: "Czech Republic",
+    value: 301.9,
+  },
+  {
+    category: "Ireland",
+    value: 201.1,
+  },
+  {
+    category: "Germany",
+    value: 165.8,
+  },
+  {
+    category: "Australia",
+    value: 139.9,
+  },
+  {
+    category: "Austria",
+    value: 128.3,
+  },
+  {
+    category: "UK",
+    value: 99,
+  },
+  {
+    category: "Belgium",
+    value: 60,
+  },
+  {
+    category: "Netherlands",
+    value: 50,
+  },
+];
 const Dashboard = () => {
   const [date, setDate] = useState(new Date());
-  const [chartdata, setData] = useState([
+  const [Barchartdata, setData] = useState([
     {
       name: "Category",
       data: [38, 30, 20, 5], // Replace with your actual data
@@ -72,7 +110,7 @@ const Dashboard = () => {
         >
           <Chart
             options={options}
-            series={chartdata}
+            series={Barchartdata}
             type="bar"
             width="100%"
             height="100%"

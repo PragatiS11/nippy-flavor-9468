@@ -40,7 +40,9 @@ import AdminUsers from "../Pages/AdminUsers";
 import AdminCategories from "../Pages/AdminCategories";
 import AdminEvents from "../Pages/AdminEvents";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import AdminSettings from "../Pages/AdminSettings";
+import AdminSettings from "../Pages/AdminManage";
+import UserByAdmin from "../Pages/UserByAdmin";
+import AdminProfile from "../Pages/AdminProfile";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, link: "/admin/dashboard/" },
@@ -51,7 +53,7 @@ const LinkItems = [
     link: "/admin/category/",
   },
   { name: "Events", icon: FiStar, link: "/admin/events/" },
-  { name: "Settings", icon: FiSettings, link: "/admin/settings/" },
+  { name: "Manage", icon: FiSettings, link: "/admin/settings/" },
 ];
 
 const SidebarContent = ({ setSearchParams, setlink, onClose, ...rest }) => {
@@ -77,7 +79,7 @@ const SidebarContent = ({ setSearchParams, setlink, onClose, ...rest }) => {
           {/* logo */}
 
           <img
-            src="https://i.ibb.co/BndWRTs/betterlife.png"
+            src="https://i.ibb.co/0qSN97p/retina-ngo2.png"
             alt="logo"
             style={{ cursor: "pointer" }}
             onClick={() => setSearchParams({ path: "/admin" })}
@@ -141,7 +143,7 @@ const NavItem = ({ icon, children, ...rest }) => {
   );
 };
 
-const MobileNav = ({ setlink, onOpen, ...rest }) => {
+const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
   const navigate = useNavigate();
   return (
     <Flex
@@ -218,11 +220,15 @@ const MobileNav = ({ setlink, onOpen, ...rest }) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem onClick={() => setlink("/admin/profile/")}>
+              <MenuItem
+                onClick={() => setSearchParams({ path: "/admin/profile/" })}
+              >
                 Profile
               </MenuItem>
-              <MenuItem onClick={() => setlink("/admin/settings/")}>
-                Settings
+              <MenuItem
+                onClick={() => setSearchParams({ path: "/admin/settings/" })}
+              >
+                Manage
               </MenuItem>
               {/* <MenuItem>Billing</MenuItem> */}
               <MenuDivider />
@@ -239,7 +245,7 @@ const AdminNavbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Link, setLink] = useState("");
   const [params, setSearchParams] = useSearchParams("" || { path: "/admin" });
-  console.log(params.get("path"), "i dont know bro");
+  console.log(params.get("path").split("/")[3], "i dont know bro");
 
   useEffect(() => {
     console.log(Link);
@@ -265,7 +271,7 @@ const AdminNavbar = () => {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav setlink={setLink} onOpen={onOpen} />
+      <MobileNav setSearchParams={setSearchParams} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* Content */}
         {params.get("path") === "/admin" && <Dashboard />}
@@ -274,6 +280,11 @@ const AdminNavbar = () => {
         {params.get("path") === "/admin/category/" && <AdminCategories />}
         {params.get("path") === "/admin/events/" && <AdminEvents />}
         {params.get("path") === "/admin/settings/" && <AdminSettings />}
+        {params.get("path").split("/")[3] === "singleUser" && (
+          <UserByAdmin id={params.get("path").split("/")[4]} />
+        )}
+        {params.get("path") === "/admin/profile/" && <AdminProfile />}
+
         {/* <AdminRoutes /> */}
       </Box>
     </Box>
