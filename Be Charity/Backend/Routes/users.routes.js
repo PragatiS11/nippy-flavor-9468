@@ -76,6 +76,17 @@ UserRouter.get("/user-data",auth,async(req,res)=>{
     }
 })
 
+//Get User Data By ID
+UserRouter.get("/user-data-by-id/:id",async(req,res)=>{
+    let {id}=req.params;
+    try {
+        const userData=await UserModel.findOne({_id:id})
+        res.status(200).send(userData)
+    } catch (error) {
+        res.status(400).send({msg:error})
+    }
+})
+
 
 module.exports={
     UserRouter

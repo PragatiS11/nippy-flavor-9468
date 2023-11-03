@@ -13,20 +13,19 @@ import { DonationRequest } from '../Utilis/api';
 import OfflineData from '../Components/SingleCard';
 import Footer from '../Components/Footer';
 const Donate = () => {
-  const [search, setSearch] = useState("");
-  let [flags,setFlags]=React.useState(true)
+const [search, setSearch] = useState("");
+let [flags,setFlags]=React.useState(true)
+let [data,setData]=React.useState([]);
+let [loading,setLoading]=React.useState(false)
+useEffect(()=>{
+setLoading(true)
+    DonationRequest().then(res=>{
+// console.log(res.data)
+      setData(res.data)
+    setLoading(false)
+    })
 
-// let [data,setData]=React.useState([]);
-// let [loading,setLoading]=React.useState(false)
-// useEffect(()=>{
-// setLoading(true)
-//     DonationRequest().then(res=>{
-// // console.log(res.data)
-//       setData(res.data)
-//     setLoading(false)
-//     })
-
-// },[])
+},[])
 
   return (
     <>
@@ -64,8 +63,7 @@ const Donate = () => {
      
 
       </Flex>
-
-      <OfflineData />
+{data.length!==0?<OfflineData data={data} />:<DonationSkeleton /> }
       <Box
         fontFamily={"Poppins"}
         m={"100px"}

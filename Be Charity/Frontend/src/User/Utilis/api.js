@@ -36,8 +36,13 @@ export const UserDataRequest = () => {
   );
 };
 
+
 export const DonationRequest = () => {
     return axios.get(
       DonationApi+"/"
     );
   };
+
+export const GetDataByUserId=(id)=>{
+  return axios.get(UserApi+"/user-data-by-id/"+id);
+};

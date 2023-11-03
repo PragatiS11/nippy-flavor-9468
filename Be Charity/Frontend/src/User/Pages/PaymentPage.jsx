@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Progress } from "@chakra-ui/react"
+
 import "../Pages/Style/SinglePage.css"
+import {
+  Box,
+  Heading,
+  Image,
+  Icon,
+  Button,
+  Stack,
+  Progress,
+  Text,
+  Flex,
+  Divider,
+} from '@chakra-ui/react';
+import BGImage from "../Assests/ngo2-sectionbg2.png"
+import Navbar from "../Components/Navbar"
 const PaymentPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [dropdown1Visible, setDropdown1Visible] = useState(false);
@@ -43,28 +57,44 @@ const PaymentPage = () => {
   };
 
   return (
-    <div style={{ border: '2px solid black', display: 'flex', flexDirection: 'column', alignItems: 'center', width: "50%", justifyContent: "center", margin: "auto", boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+    <Box   fontFamily={"Poppins"}  color={"black"}      style={{
+      backgroundImage: `url('${BGImage}')`,
+      backgroundSize: "cover",
+      height: "720px",
+      backgroundPosition:"center",
+      backgroundRepeat: "no-repeat",
+    }}>
+            <Navbar />
+       
+        <Box marginTop="50px" >
+     
+    <Box >
+    <Text fontWeight={'500'} textAlign={"center"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>Payment Section</Text>
+    </Box>
+    </Box>
+    <div style={{  display: 'flex', flexDirection: 'column', alignItems: 'center', width: "50%", justifyContent: "center", margin: "auto", }}>
       <div style={{ width: "500px" }}>
-        <h2 style={{ fontSize: "22px", marginTop: "30px" }}><b>Enter your donation</b></h2>
+        {/* <h2 style={{ fontSize: "22px", marginTop: "30px" }}><b>Enter your donation</b></h2> */}
       </div>
       <br />
 
-      <div style={{ display: 'flex', width: '75%', alignItems: 'center', border: '2px solid black', borderRadius: '20px', height: '70px', marginBottom: '20px' }}>
-        <div style={{ marginLeft: '20px', fontSize: '20px' }}>
-          <div><b>£</b></div>
-          <div><b>GBP</b></div>
+      <div style={{ display: 'flex', width: '75%', alignItems: 'center', border: '2px solid black', borderRadius: '0px', height: '70px', marginBottom: '20px' }}>
+        <div style={{ marginLeft: '20px', fontSize: '18px' }}>
+          <div><b>$</b></div>
+          <div><b>USD</b></div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <input
+          <input placeholder='Enter Donation Amount'
             style={{
               textAlign: 'right',
               direction: 'rtl',
               width: '100%',
+              backgroundColor:"transparent",
               border: 'none',
               outline: 'none',
               paddingLeft: '-10px',
               cursor: 'text',
-              marginLeft: '120px',
+              marginLeft: '80px',
               fontSize: '28px',
               fontWeight: 'bolder',
             }}
@@ -176,6 +206,7 @@ const PaymentPage = () => {
         <p>By continuing, you agree with <a href="#" style={{ textDecoration: "underLine" }}>BeCharity</a> terms and <a href="#" style={{ textDecoration: "underLine" }}>privacy notice</a>. Learn more about <a href="#" style={{ textDecoration: "underLine" }}>pricing and fees</a>.</p>
       </div>
     </div>
+    </Box>
   );
 };
 
