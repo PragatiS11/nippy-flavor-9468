@@ -1,8 +1,8 @@
 const express=require("express");
 const { DonationModel } = require("../Model/donation.model");
-const { auth } = require("../Middleware/auth.middleware");
+// const { auth } = require("../Middleware/auth.middleware");
 const DonationRouter=express.Router();
-DonationRouter.use(auth)
+// DonationRouter.use(auth)
 //Post the Post
 DonationRouter.post("/add",async(req,res)=>{
     try {
@@ -14,39 +14,23 @@ DonationRouter.post("/add",async(req,res)=>{
     }
  })
 
-// Get The Post In Top
-DonationRouter.get("/top",async(req,res)=>{
-   try {
-        let limit=req.query.limit || 3;
-        let skip=(req.query.page-1)*3 || 0;
-        const totalPost=await DonationModel.count(query);
-        const totalPages = Math.ceil(totalPost / limit);
-    const Post=await DonationModel.find({}).sort({"no_of_comments":-1}).skip(skip).limit(limit)
-    res.status(200).send({Post,totalPost,totalPages});
-   } catch (error) {
-    res.status(400).send({msg:error})
-   }
-})
+
 
 //Get the Post With Queries
 DonationRouter.get("",async(req,res)=>{
     try {
-     let query={}
+   //   let query={}
  
-         if(req.query.device){
- query.device=req.query.device;
-         }
-         if(req.query.lte && req.query.gte){
-            query['no_of_comments']={$gte : req.query.gte, $lte : req.query.lte}
-         }
-
+   
+       
         
-         let limit=req.query.limit || 3;
-         let skip=(req.query.page-1)*3 || 0;
-         const totalPost=await DonationModel.count(query);
-         const totalPages = Math.ceil(totalPost / limit);
-             const Post = await DonationModel.find(query).skip(skip).limit(limit);
-     res.status(200).send({Post,totalPost,totalPages});
+   //       let limit=req.query.limit || 3;
+   //       let skip=(req.query.page-1)*3 || 0;
+   //       const totalPost=await DonationModel.count(query);
+   //       const totalPages = Math.ceil(totalPost / limit);
+   //           const Post = await DonationModel.find(query).skip(skip).limit(limit);
+   const Donations=await DonationModel.find();
+     res.status(200).send(Donations);
     } catch (error) {
      res.status(400).send({msg:error})
     }
