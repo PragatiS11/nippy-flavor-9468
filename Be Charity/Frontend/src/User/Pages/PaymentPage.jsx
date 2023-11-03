@@ -13,9 +13,16 @@ import {
   Text,
   Flex,
   Divider,
+  Center,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Input,
 } from '@chakra-ui/react';
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import Navbar from "../Components/Navbar"
+import Payment from '../Components/Payment';
+import { CheckIcon } from '@chakra-ui/icons';
 const PaymentPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [dropdown1Visible, setDropdown1Visible] = useState(false);
@@ -71,10 +78,64 @@ const PaymentPage = () => {
     <Box >
     <Text fontWeight={'500'} textAlign={"center"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>Payment Section</Text>
     </Box>
+
+    <Center>
+    <div style={{margin:"auto",width: '15%', alignItems: 'center',justifyContent:"center", borderRadius: '0px', height: '70px', marginBottom: '20px' }}>
+    <Box><Text textAlign={"center"}>Enter Donation Amount</Text></Box>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+  
+        {/* <div><b>$</b></div>
+          <input placeholder='Enter Donation Amount'
+            style={{
+              textAlign: 'right',
+              direction: 'rtl',
+              width: '100%',
+              backgroundColor:"transparent",
+            
+              border: 'none',
+              borderBottom:"1px solid black",
+              outline: 'none',
+              paddingLeft: '-10px',
+              cursor: 'text',
+              marginLeft: '80px',
+              fontSize: '28px',
+              fontWeight: 'bolder',
+            }}
+            type="number"
+            onChange={handleDonationChange}
+            value={donationAmount}
+          /> */}
+     
+
+  
+  <InputGroup>
+    <InputLeftElement
+      pointerEvents='none'
+      color='black'
+      fontSize='1.2em'
+      children='$'
+    />
+      <Input  type='number' variant="flushed" fontSize={"25"}  textAlign={"right"} fontWeight={"600"}
+           borderBottom={"2px solid black"}   required  placeholder='' 
+         /> 
+<InputRightElement
+      pointerEvents='none'
+      color='black'
+   fontSize="20"
+      children='.00'
+    />
+  </InputGroup>
+        </div>
+        {/* <div style={{ marginLeft: '6px', marginRight: '10px', fontSize: '28px' }}><b>.00</b></div> */}
+      </div>
+    </Center>
+
+    <Payment />
     </Box>
-    <div style={{  display: 'flex', flexDirection: 'column', alignItems: 'center', width: "50%", justifyContent: "center", margin: "auto", }}>
+  
+    {/* <div style={{  display: 'flex', flexDirection: 'column', alignItems: 'center', width: "50%", justifyContent: "center", margin: "auto", }}>
       <div style={{ width: "500px" }}>
-        {/* <h2 style={{ fontSize: "22px", marginTop: "30px" }}><b>Enter your donation</b></h2> */}
+        <h2 style={{ fontSize: "22px", marginTop: "30px" }}><b>Enter your donation</b></h2>
       </div>
       <br />
 
@@ -205,7 +266,7 @@ const PaymentPage = () => {
       <div style={{ width: "500px", marginBottom: "20px" }}>
         <p>By continuing, you agree with <a href="#" style={{ textDecoration: "underLine" }}>BeCharity</a> terms and <a href="#" style={{ textDecoration: "underLine" }}>privacy notice</a>. Learn more about <a href="#" style={{ textDecoration: "underLine" }}>pricing and fees</a>.</p>
       </div>
-    </div>
+    </div> */}
     </Box>
   );
 };
