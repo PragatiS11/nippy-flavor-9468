@@ -15,8 +15,8 @@ description:String,
     updates:Array 
 },{versionKey:false});
 
-const DonationMOdel=mongoose.model("donation",DonationSchema);
+const DonationModel=mongoose.model("donation",DonationSchema);
 
 module.exports={
-    DonationMOdel
+    DonationModel
 }

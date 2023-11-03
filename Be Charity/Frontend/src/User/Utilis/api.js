@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const UserApi = "http://localhost:8000/users";
-
+const DonationApi="http://localhost:8000/donation"
 export const LoginRequest = (body) => {
   return axios.post(UserApi + "/login", body);
 };
@@ -35,3 +35,9 @@ export const UserDataRequest = () => {
     }
   );
 };
+
+export const DonationRequest = () => {
+    return axios.get(
+      DonationApi+"/"
+    );
+  };

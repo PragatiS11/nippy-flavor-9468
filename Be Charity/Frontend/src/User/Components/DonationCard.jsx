@@ -22,39 +22,41 @@ import {
   Image,
   SimpleGrid
   } from "@chakra-ui/react";
-  import { BiTimeFive ,BiUserPin} from "react-icons/bi";
+  import { LiaDonateSolid } from "react-icons/lu";
+  import { BiDonateHeart, BiSelectMultiple, BiTimeFive ,BiUserPin} from "react-icons/bi";
   import { IoLocationOutline} from "react-icons/io5";
   import { useContext } from "react";
-import { AuthContext } from "../route/AuthContext";
+
 import { useNavigate } from "react-router-dom";
 import { useToast } from '@chakra-ui/react'
+import { FaDonate } from 'react-icons/fa';
 
-const DonationCard = ({el,date}) => {
+const DonationCard = ({el}) => {
   let Navigate=useNavigate()
-  const { status,isActive,addWorkout } = useContext(AuthContext);
+
   const toast = useToast()
   function HandleClick(){
-if(!status){
-Navigate("/login")
-}else if(!isActive){
-Navigate("/pricing")
-}else{
-  addWorkout({...el,date:date})
-  toast({
-    title: 'Workout Session Successfully Booked!',
-    status: 'success',
-    duration: 2000,
-    isClosable: true,
-  })
+// if(!status){
+// Navigate("/login")
+// }else if(!isActive){
+// Navigate("/pricing")
+// }else{
+//   addWorkout({...el,date:date})
+//   toast({
+//     title: 'Workout Session Successfully Booked!',
+//     status: 'success',
+//     duration: 2000,
+//     isClosable: true,
+//   })
 
-}
+// }
   }
 
   return (
     <>
     <Flex
-  bg="black"
-
+ 
+color={"black"}
   pt={10}
   w="full"
   alignItems="center"
@@ -62,7 +64,7 @@ Navigate("/pricing")
 
 >
   <Box
-    bg="black"
+ 
     _dark={{
       bg: "gray.800",
     }}
@@ -78,9 +80,7 @@ Navigate("/pricing")
     shadow={{
       lg: "lg",
     }}
-    rounded={{
-      lg: "lg",
-    }}
+  
   >
     <Box
       w={{
@@ -95,13 +95,13 @@ Navigate("/pricing")
         // rounded={{
         //   lg: "lg",
         // }}
-        rounded={{base:"lg",lg:0}}
- roundedTopLeft={ {base:"lg",lg:"20px"}}
- roundedBottomLeft={{base:"lg",lg:"20px"}}
+
         bgSize="cover"
+        bgPos={"center"}
+        
         style={{
           backgroundImage:
-            `url(${el.img})`,
+            `url(${el.image})`,
         }}
       ></Box>
     </Box>
@@ -109,10 +109,10 @@ Navigate("/pricing")
     <Box
       py={12}
       px={6}
-      borderRadius={{base:"lg",lg:0}}
-    borderTopRightRadius={ {base:"lg",lg:"20px"}}
-      borderBottomRightRadius={{base:"lg",lg:"20px"}}
-      bg={"#0D0D0D"}
+
+  
+    
+  color={"black"}
       maxW={{
         base: "xl",
         lg: "5xl",
@@ -122,18 +122,18 @@ Navigate("/pricing")
         lg: "50%",
       }}
     >
-      <chakra.h2
+      <chakra.h2 fontFamily={'DM Serif Display'} letterSpacing={"0.5px"}
         fontSize={{
           base: "2xl",
           md: "3xl",
         }}
-        color="white"
+      
       
         fontWeight="bold"
       >
-        {el.name}{" "}
+        {el.title}{" "}
         <chakra.span
-          color="brand.600"
+      
           _dark={{
             color: "brand.400",
           }}
@@ -144,28 +144,28 @@ Navigate("/pricing")
       <SimpleGrid columns={3} mt={4}>
         <Flex >
         
-            <BiTimeFive  size={18} mt={0}/>
+            <BiSelectMultiple  size={18} mt={0}/>
    
       
-            <Text ml={1.5}>{el.time}</Text>
+            <Text ml={1.5}>{el.category}</Text>
          
        
         </Flex>
       
         <Flex >
            
-           <BiUserPin size={18}  mt={0}/>
+           <FaDonate size={18}  mt={0}/>
    
           
-           <Text ml={1.5}  >{el.trainerName}</Text>
+           <Text ml={1.5}  >{el.current_funds} Raised</Text>
           
        </Flex>
        <Flex >
            
-           <IoLocationOutline size={18} mt={0}/>
+           <BiDonateHeart size={18} mt={0}/>
    
         
-           <Text ml={1.5} >{el.location}</Text>
+           <Text ml={1.5} >{el.donators.length} Donaters</Text>
           
       
        </Flex>
@@ -173,16 +173,16 @@ Navigate("/pricing")
      
       <chakra.h4
         mt={4}
-        color="white"
+     
  
       >
-    Begin your mornings by engaging in a Pilates session, focusing on enhancing core strength and boosting flexibility for overall wellness.
+    {el.description}
       </chakra.h4>
 
       <Box mt={8}>
         <Button
           bg="#097fd9"
-          color="white"
+
           px={5}
           py={3}
           colorScheme='#097fd9'
