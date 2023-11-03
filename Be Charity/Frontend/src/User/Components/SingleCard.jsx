@@ -6,18 +6,8 @@ import { DonationRequest } from '../Utilis/api';
 
 
 
-const OfflineData = () => {
-    let [data,setData]=React.useState([]);
-let [loading,setLoading]=React.useState(false)
-React.useEffect(()=>{
-setLoading(true)
-    DonationRequest().then(res=>{
-// console.log(res.data)
-      setData(res.data)
-    setLoading(false)
-    })
+const OfflineData = ({data}) => {
 
-},[])
   return (
     <Container maxW="7xl" p="5" mx="auto">
       <SimpleGrid columns={[1,2,3]} spacing={8} mt={8}>

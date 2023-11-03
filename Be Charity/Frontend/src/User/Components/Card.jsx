@@ -78,8 +78,6 @@ const RepositoryCard = ({title,description,cover,category,stargazers_count,donat
             <Text   fontFamily={"DM Serif Display"}
                   fontSize="25"
                   m={"10px 0"}
-               
-             
                noOfLines={1}
                   fontWeight="600"
                  

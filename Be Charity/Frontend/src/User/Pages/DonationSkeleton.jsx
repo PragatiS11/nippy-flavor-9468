@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel,TabIndicator, SimpleGrid } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel,TabIndicator, SimpleGrid, Grid } from '@chakra-ui/react'
 import { IconName } from "react-icons/bi";
 import { TimeIcon } from '@chakra-ui/icons'
 import { Fade,Slide } from "react-awesome-reveal";
@@ -37,45 +37,82 @@ const DonationSkeleton = () => {
         <Center>
             <VStack>
         <VStack mt={10}>
-        <Stack direction={{base:"column",md:"row"}}>
-<Center>
-  <SkeletonCircle size='250' borderRadius={20} w={500}/>
+        <SimpleGrid columns={[1,2,3]} spacing={8} mt={8} >
+          <Flex direction={"column"} justifyContent={"center"} alignItems={"center"}>
+
+          
+          <Box>
+          <Center>
+  <SkeletonCircle size='250' m={"auto"} width={390} borderRadius={0}  mb={"20px"}/>
   </Center>
-  <Center>
-  <VStack>
-  <Skeleton height='15px' w={400} ml={5}  />
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
+          </Box>
+<Box>
+<VStack alignItems={"center"} justifyContent={"center"}>
+  <Skeleton height='15px' w={370} mt={"5px"}   />
+   <Skeleton height='15px' w={370} mt={"5px"}   />
   
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
-  <Skeleton height='15px' w={400} ml={5} mt={5} />
+   <Skeleton height='15px' w={370} mt={"5px"}   />
+
 
   </VStack>
+  </Box>
+  <Center>
+ 
     </Center>
-</Stack>
+    </Flex>
+    <Flex direction={"column"} justifyContent={"center"} alignItems={"center"}>
+
+          
+<Box>
+<Center>
+<SkeletonCircle size='250' m={"auto"} width={390} borderRadius={0}  mb={"20px"}/>
+</Center>
+</Box>
+<Box>
+<VStack alignItems={"center"} justifyContent={"center"}>
+<Skeleton height='15px' w={370} mt={"5px"}   />
+<Skeleton height='15px' w={370} mt={"5px"}   />
+
+<Skeleton height='15px' w={370} mt={"5px"}   />
+
 
 </VStack>
-<VStack mt={10}>
-        <Flex>
+</Box>
 <Center>
-  <SkeletonCircle size='250' borderRadius={20} w={500}/>
-  </Center>
-  <Center>
-  <VStack>
-  <Skeleton height='15px' w={400} ml={5}  />
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
-  
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
-   <Skeleton height='15px' w={400} ml={5} mt={5} />
-  <Skeleton height='15px' w={400} ml={5} mt={5} />
 
-  </VStack>
-    </Center>
+</Center>
+</Flex>
+<Flex direction={"column"} justifyContent={"center"} alignItems={"center"}>
+
+          
+<Box>
+<Center>
+<SkeletonCircle  size='250' m={"auto"} width={390} borderRadius={0}  mb={"20px"}/>
+</Center>
+</Box>
+<Box>
+<VStack alignItems={"center"} justifyContent={"center"}>
+<Skeleton height='15px' w={370} mt={"5px"}   />
+<Skeleton height='15px' w={370} mt={"5px"}   />
+
+<Skeleton height='15px' w={370} mt={"5px"}   />
+
+
+</VStack>
+</Box>
+<Center>
+
+</Center>
 </Flex>
 
+    </SimpleGrid>
+
+
 </VStack>
+
 </VStack>
 </Center>
+
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Box,
     Heading,
@@ -8,51 +8,94 @@ import {
     Stack,
     Progress,
     Text,
+    Flex,
+    Divider,
 } from '@chakra-ui/react';
+import { GoDotFill} from "react-icons/go";
+import { RxDotFilled } from "react-icons/rx";
 import { IoIosPricetags } from 'react-icons/io';
 import Navbar from '../Components/Navbar';
+import BGImage from "../Assests/ngo2-sectionbg2.png"
+import { IoPricetagsOutline } from 'react-icons/io5';
+import Footer from '../Components/Footer';
 
 const SingleDonationPage = () => {
+
     return (
-        <Box>
-            <Box>
+        <>
+        
+            <Box   fontFamily={"Poppins"}  color={"black"}      style={{
+          backgroundImage: `url('${BGImage}')`,
+          backgroundSize: "cover",
+          height: "720px",
+          backgroundPosition:"center",
+          backgroundRepeat: "no-repeat",
+        }}>
                 <Navbar />
-            </Box>
-            <Box marginTop="50px">
-                <Heading marginLeft="90px">
-                    Help us fund our third-year company performance
-                </Heading>
-                <br />
-            </Box>
-            <Box display="flex">
-                <Box width="88%" marginLeft="90px">
+           
+            <Box marginTop="50px" >
+         
+        <Box >
+        <Text fontWeight={'500'} w={"77%"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>Search fundraisers on BeCharity</Text>
+        </Box>
+        </Box>
+
+      
+              
+            
+            
+            <Box display="flex"  w={"90%"} m={"auto"}  >
+                <Box width="100%" marginLeft="90px">
                     <Box width="100%">
                         <Image
                             src="https://www.gu.se/sites/default/files/styles/100_10_4_xmedium_2x/public/2022-05/2022-05-25_MedBlickenFramat_Foto.png?h=9da390a8&itok=2B0hKCbD"
                             alt=""
                             width="100%"
-                            borderRadius="20px"
+                   
                         />
                         <br />
-                        <br />
+                     
                         <Stack direction="row" alignItems="center">
-                            <Icon as={IoIosPricetags} />
-                            <Heading size="md">Education</Heading>
+                            <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By Name </Text><RxDotFilled />
+                            <Icon as={IoPricetagsOutline} />
+                            <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">Education</Text>
                         </Stack>
+                        <Divider  borderColor={"#c8c8c8"} mt={"20px"}/>
                         <br />
-                        <Text>
+                      
+                        <Text  color={"#666666"} fontWeight={"300"}>
                             V3nture dance company is our third-year professional performance
                             company, where guest choreographers and students come together to
                             create a piece for an end of module show.
                         </Text>
                         <br />
-                        <Text>
+                        <Text  color={"#666666"} fontWeight={"300"}>
+                        Donate here - any amount will help. Even $5 can help towards providing essentials to people in need in Acapulco right now.
+<br /><br />
+If you're not in a place to donate, you can still help in a huge way by sharing this fundraiser link with your friends, family, and network.
+<br /><br />
                             Any contributions will be appreciated and will go towards our
                             costumes, set, props, etc.
                         </Text>
-                        <br />
-                        <br />
-                        <Stack
+                      <br />
+                    
+                        <Button
+          mt={"10px"}
+          w={"100%"}
+          letterSpacing={"2px"}
+                borderRadius={"0"}
+                fontWeight={"300"}
+                bg={  "#f7b70d"}
+              
+                _hover={{ bgColor: "#79ab2f" }}
+                color={"white"}
+                colorScheme="black"
+              >
+                DONATE US
+              </Button>
+   
+              <Divider  borderColor={"#c8c8c8"} mt={"35px"}/>
+                        {/* <Stack
                             direction="row"
                             alignItems="center"
                             padding="30px"
@@ -63,57 +106,60 @@ const SingleDonationPage = () => {
                                 alt=""
                                 width="100px"
                             />
-                            <Box marginLeft="30px">
-                                <Heading as="h3" size="lg">
-                                    Give £10 to help get this fundraiser to its goal
-                                </Heading>
-                                <br />
-                                <Button
-                                    width="80%"
-                                    border="1px solid red"
-                                    backgroundColor="#fdb72f"
-                                    height="50px"
-                                    fontSize="20px"
-                                    marginLeft="80px"
-                                    borderRadius="20px"
-                                >
-                                    <b>Make a donation</b>
-                                </Button>
-                            </Box>
-                        </Stack>
+                          
+                        </Stack> */}
                         <br />
-                        <br />
+                  
                         <Stack>
-                            <Heading>Organiser</Heading>
+                            <Text fontWeight={'500'}  fontSize={28} letterSpacing={"1px"}   fontFamily={'DM Serif Display'}>Organizer</Text>
                         </Stack>
                         <br />
-                        <Box width="40%">
-                            <Stack direction="row" alignItems="center">
-                                <Image
+                        <Box >
+                            <Flex direction="row" justifyContent={"flex-start"} >
+                                <Box  w={"7%"}>
+                                <Image  
                                     src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rz3q1lfopq69ghm40bt3.png"
                                     alt=""
-                                    width="15%"
+                                   
                                 />
-                                <Box marginLeft="40px">
-                                    <Heading as="h4" size="md">Hollie Clapham</Heading>
-                                    <Text>Organiser</Text>
-                                    <Text>England</Text>
                                 </Box>
-                            </Stack>
+                                
+                                <Box ml={"20px"} >
+                               
+                                    <Text fontWeight={"400"} fontSize={20}>Hollie Clapham</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>Organizer</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>England</Text>
+                                </Box>
+                            </Flex>
+                            
                         </Box>
-                        <br />
+                        
+              <Divider  borderColor={"#c8c8c8"} m={"25px 0"}/>
                         <Stack>
-                            <Button
-                                width="100px"
-                                height="40px"
-                                border="1px solid red"
-                                marginLeft="20px"
-                                backgroundColor="#fdb72f"
-                                borderRadius="20px"
-                            >
-                                Contact
-                            </Button>
+                            <Text fontWeight={'500'}  fontSize={28} letterSpacing={"1px"}   fontFamily={'DM Serif Display'}>Beneficiary</Text>
                         </Stack>
+                        <br />
+                        <Box >
+                            <Flex direction="row" justifyContent={"flex-start"} >
+                                <Box  w={"7%"}>
+                                <Image  
+                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rz3q1lfopq69ghm40bt3.png"
+                                    alt=""
+                                   
+                                />
+                                </Box>
+                                
+                                <Box ml={"20px"} >
+                               
+                                    <Text fontWeight={"400"} fontSize={20}>Hollie Clapham</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>Organiser</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>England</Text>
+                                </Box>
+                            </Flex>
+                            
+                        </Box>
+                        {/* <br />
+         
                         <br />
                         <br />
                         <Stack>
@@ -170,85 +216,79 @@ const SingleDonationPage = () => {
                                     <Text>Prayers for your sweet kitty</Text>
                                 </Box>
                             </Stack>
-                        </Box>
+                        </Box>*/}
                     </Box>
-                </Box>
-                <Box
+                </Box> 
+                <Box 
                     marginLeft="50px"
                     marginRight="90px"
-                    boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                    // boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
                     height="600px"
                 >
-                    <Box marginLeft="30px" marginRight="30px" marginTop="30px">
+                    <Box   marginLeft="30px" marginRight="30px" marginTop="30px">
                         <Text >
-                            <span style={{ fontSize: "22px" }}>$505</span> USD raised of $550
-                            goal
+                            <span style={{ fontSize: "22px" }}>$505</span> USD Raised of $550
+                      
                         </Text>
-                        <Progress value={505} max={550} colorScheme="green" minW="10" />
+                        
+                        <Progress m={"20px 0"} value={505} max={550} colorScheme="green" minW="10" />
+                        <Divider  borderColor={"#c8c8c8"} m={"25px 0px"}/>
+                  <Button
+          
+          w={"100%"}
+          letterSpacing={"2px"}
+                borderRadius={"0"}
+                fontWeight={"300"}
+                bg={  "#f7b70d"}
+              
+                _hover={{ bgColor: "#79ab2f" }}
+                color={"white"}
+                colorScheme="black"
+              >
+                DONATE US
+              </Button>
+              <Divider  borderColor={"#c8c8c8"} mt={"25px"}/>
                         <br />
-                        <Text>12 donations</Text>
-                        <br />
-                        <Button
-                            width="100%"
-                            backgroundColor="#fdb72f"
-                            height="40px"
-                            borderRadius="10px"
-                        >
-                            Donate Now
-                        </Button>
-                        <br />
-                        <br />
+          
                         <Stack direction="row" alignItems="center">
                             <Image
-                                src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/80bpwv4sx0ipbgh0tarc.png"
+                                src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pao0wirnog4e1e73utnx.png"
                                 alt=""
-                                width="10%"
+                                borderRadius={"50%"}
+                                width="15%"
                             />
-                            <Text fontSize="18px" color="#7f489e">
-                                <b>12 people just donated</b>
+                            <Text fontSize="22" m={"0 5px"}  letterSpacing={"1px"} fontWeight={"600"} fontFamily={'DM Serif Display'}>
+                                12 People Donated
                             </Text>
                         </Stack>
                         <br />
-                        <Box width="40%">
+                 
+                           
+                       
+                           
+                            
                             <Stack direction="row" alignItems="center">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="15%"
-                                />
+                            
+  <Image
+  
+    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6xfxq7dt7mye8686nbcj.png"
+    alt="Friendly Image"
+    width="15%"
+    borderRadius="50%"  // Adding rounded corners for a softer look
+    // boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"  // Adding a soft drop shadow
+  />
+
+                             
                                 <Box marginLeft="15px">
                                     <Text>Belle Segev</Text>
                                     <Text>$50</Text>
                                 </Box>
                             </Stack>
                             <br />
-                            <Stack direction="row" alignItems="center">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="15%"
-                                />
-                                <Box marginLeft="15px">
-                                    <Text>Belle Segev</Text>
-                                    <Text>$50</Text>
-                                </Box>
-                            </Stack>
-                            <br />
-                            <Stack direction="row" alignItems="center">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="15%"
-                                />
-                                <Box marginLeft="15px">
-                                    <Text>Belle Segev</Text>
-                                    <Text>$50</Text>
-                                </Box>
-                            </Stack>
-                        </Box>
+                        
                         <br />
                         <br />
-                        <Stack direction="row" alignItems="center">
+                        {/* <Stack direction="row" alignItems="center">
                             <Button
                                 width="100px"
                                 border="1px solid black"
@@ -266,13 +306,13 @@ const SingleDonationPage = () => {
                             >
                                 See Top Donations
                             </Button>
-                        </Stack>
+                        </Stack> */}
                     </Box>
                 </Box>
             </Box>
             <br />
             <br />
-            <Box
+            {/* <Box
                 width="100%"
                 margin="auto"
                 boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
@@ -341,8 +381,33 @@ const SingleDonationPage = () => {
                     </Stack>
                 </Stack>
 
-            </Box>
-        </Box>
+            </Box> */}
+       
+        
+     
+        <Box fontFamily={"Poppins"}   m={"100px"} mt={"50px"} style={{
+      backgroundImage: `url('https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-wrapbg1.jpg')`,
+      backgroundSize: "cover",
+   height:"450px",
+  backgroundAttachment:"fixed",
+      backgroundRepeat: "no-repeat"
+    }}>
+     
+      <Flex textAlign={"center"} justifyContent={"center"} alignItems={"center"}  h={"450px"} >
+        <Box>
+        <Text fontWeight={'500'} fontSize={"55"} lineHeight={"55px"} color={"white"} fontFamily={'DM Serif Display'}>We can't help everyone, <br />
+but everyone can help someone.</Text>
+<Box m={"auto"}>
+<Button m={"30px 10px"} borderRadius={"0"}  fontWeight={'300'} bg={"#df8c09"} color={"white"} colorScheme='black'>Donate Us</Button>
+      <Button m={"30px 10px"} borderRadius={"0"}  fontWeight={'300'} bg={"#79ab2f"} color={"white"} colorScheme='black'>Become a Voluntear</Button>
+      </Box>  </Box>
+     
+
+      </Flex>
+
+      </Box>
+      <Footer />
+      </Box></>
     );
 };
 
