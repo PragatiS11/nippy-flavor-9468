@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Box, Text } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const ThankYou = () => {
@@ -28,11 +28,21 @@ const ThankYou = () => {
   }, [navigate]);
 
   return (
-    <div style={{ margin: "auto", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "100px", flexDirection: "column", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", width: "40%", height: "400px" }}>
+    <Box
+      margin="auto"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      marginTop="100px"
+      flexDirection="column"
+      boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+      width="40%"
+      height="400px"
+    >
       <img style={{ width: "30%" }} src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b44rtw3bjhy0hl85vjeh.gif" alt="" />
       <Heading as='h3' size='lg'>Thank you for Donating</Heading>
       <br />
-      <div>
+      <Box>
         <table>
           <tbody style={{ padding: "10px" }}>
             <tr>
@@ -57,8 +67,8 @@ const ThankYou = () => {
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

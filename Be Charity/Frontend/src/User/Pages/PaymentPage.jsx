@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Progress } from "@chakra-ui/react"
 import "../Pages/Style/SinglePage.css"
 const PaymentPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -74,7 +75,6 @@ const PaymentPage = () => {
         </div>
         <div style={{ marginLeft: '6px', marginRight: '10px', fontSize: '28px' }}><b>.00</b></div>
       </div>
-
       <div style={{ width: "500px", marginLeft: "-17px" }}>
         <h2 style={{ fontSize: "22px" }}><b>Payment method</b></h2>
         <br />
@@ -170,7 +170,7 @@ const PaymentPage = () => {
       </div>
       <br />
       <div style={{ width: "80%", backgroundColor: "black", color: "white", height: "40px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <button onClick={handleDonate} style={{ width: "100%", backgroundColor: "black", color: "white" }}>Donate Now</button>      </div>
+        <button onClick={handleDonate} style={{ width: "100%", backgroundColor: "black", color: "white" }}>Donate Now</button>      </div>
       <br />
       <div style={{ width: "500px", marginBottom: "20px" }}>
         <p>By continuing, you agree with <a href="#" style={{ textDecoration: "underLine" }}>BeCharity</a> terms and <a href="#" style={{ textDecoration: "underLine" }}>privacy notice</a>. Learn more about <a href="#" style={{ textDecoration: "underLine" }}>pricing and fees</a>.</p>
