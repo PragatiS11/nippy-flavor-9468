@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import {
     Box,
     Heading,
@@ -10,6 +11,7 @@ import {
     Text,
     Flex,
     Divider,
+    useToast,
 } from '@chakra-ui/react';
 import { GoDotFill} from "react-icons/go";
 import { RxDotFilled } from "react-icons/rx";
@@ -18,8 +20,55 @@ import Navbar from '../Components/Navbar';
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import { IoPricetagsOutline } from 'react-icons/io5';
 import Footer from '../Components/Footer';
+import { PaymentModel } from '../Components/PaymentModel';
+import { DonationSingleRequest, GetDataByUserId } from '../Utilis/api';
+import { useParams } from 'react-router-dom';
 
 const SingleDonationPage = () => {
+    const [SignOpen, setSignOpen] = useState(false);
+    let { id } = useParams();
+    function SignClose() {
+      setSignOpen(!SignOpen);
+    }
+    let [flags,setFlags]=React.useState(true)
+let [el,setEl]=React.useState("");
+let [organizer,setOrganizer]=React.useState({});
+let [loading,setLoading]=React.useState(false)
+
+function HandleOrganizer(){
+    let id=el.organizer;
+
+    GetDataByUserId(id).then(res=>{
+        setOrganizer(res.data)
+    })
+}
+let isAuth=Cookies.get("User-token") || false;
+let toast=useToast()
+useEffect(()=>{
+setLoading(true)
+if(el){
+    if(organizer){
+        setLoading(false)
+    }else{
+        HandleOrganizer();
+        setLoading(false)
+    }
+   
+
+   
+} else{
+    DonationSingleRequest(id).then(res=>{
+// console.log(res.data)
+      setEl(res.data)
+   
+    })
+}
+    
+},[el,flags])
+
+// if(loading){
+//     return <Text>Loading...</Text>
+// }
 
     return (
         <>
@@ -36,7 +85,7 @@ const SingleDonationPage = () => {
             <Box marginTop="50px" >
          
         <Box >
-        <Text fontWeight={'500'} w={"77%"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>Search fundraisers on BeCharity</Text>
+        <Text fontWeight={'500'} w={"77%"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>{el.title}</Text>
         </Box>
         </Box>
 
@@ -48,7 +97,7 @@ const SingleDonationPage = () => {
                 <Box width="100%" marginLeft="90px">
                     <Box width="100%">
                         <Image
-                            src="https://www.gu.se/sites/default/files/styles/100_10_4_xmedium_2x/public/2022-05/2022-05-25_MedBlickenFramat_Foto.png?h=9da390a8&itok=2B0hKCbD"
+                            src={el.image}
                             alt=""
                             width="100%"
                    
@@ -56,17 +105,15 @@ const SingleDonationPage = () => {
                         <br />
                      
                         <Stack direction="row" alignItems="center">
-                            <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By Name </Text><RxDotFilled />
+                            <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By {organizer.name}</Text><RxDotFilled />
                             <Icon as={IoPricetagsOutline} />
-                            <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">Education</Text>
+                            <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">{el.category}</Text>
                         </Stack>
                         <Divider  borderColor={"#c8c8c8"} mt={"20px"}/>
                         <br />
                       
                         <Text  color={"#666666"} fontWeight={"300"}>
-                            V3nture dance company is our third-year professional performance
-                            company, where guest choreographers and students come together to
-                            create a piece for an end of module show.
+                           {el.description}
                         </Text>
                         <br />
                         <Text  color={"#666666"} fontWeight={"300"}>
@@ -86,7 +133,23 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 borderRadius={"0"}
                 fontWeight={"300"}
                 bg={  "#f7b70d"}
-              
+                onClick={()=>{if(isAuth){
+                    setFlags(!flags)
+                    setSignOpen(!SignOpen)
+                  
+                }else{  setFlags(!flags)
+                    toast({
+                        title: "Kindly Login.",
+                        position: "top",
+                        description: "To contribute us.",
+                        status: "info",
+                        duration: 2000,
+                        isClosable: true,
+                      });
+                     
+                }
+                  
+                   }}
                 _hover={{ bgColor: "#79ab2f" }}
                 color={"white"}
                 colorScheme="black"
@@ -126,9 +189,9 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                                 
                                 <Box ml={"20px"} >
                                
-                                    <Text fontWeight={"400"} fontSize={20}>Hollie Clapham</Text>
-                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>Organizer</Text>
-                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>England</Text>
+                                    <Text fontWeight={"400"} fontSize={20}>{organizer?.name}</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>Volunteer</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>{organizer?.city}</Text>
                                 </Box>
                             </Flex>
                             
@@ -141,9 +204,9 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                         <br />
                         <Box >
                             <Flex direction="row" justifyContent={"flex-start"} >
-                                <Box  w={"7%"}>
-                                <Image  
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rz3q1lfopq69ghm40bt3.png"
+                                <Box  w={"7%"} >
+                                <Image  borderRadius={"50%"}
+                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6gxvab05plbwut9coh0n.png"
                                     alt=""
                                    
                                 />
@@ -151,9 +214,9 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                                 
                                 <Box ml={"20px"} >
                                
-                                    <Text fontWeight={"400"} fontSize={20}>Hollie Clapham</Text>
-                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>Organiser</Text>
-                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>England</Text>
+                                    <Text fontWeight={"400"} fontSize={20}>{el.beneficiary?.name}</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>{el.beneficiary?.location}</Text>
+                                    <Text color={"#666666"} fontSize={16} fontWeight={"300"}>{el.beneficiary?.story}</Text>
                                 </Box>
                             </Flex>
                             
@@ -227,11 +290,11 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 >
                     <Box   marginLeft="30px" marginRight="30px" marginTop="30px">
                         <Text >
-                            <span style={{ fontSize: "22px" }}>$505</span> USD Raised of $550
+                            <span style={{ fontSize: "22px" }}>${el.current_funds}</span> USD Raised of ${el.goal}
                       
                         </Text>
                         
-                        <Progress m={"20px 0"} value={505} max={550} colorScheme="green" minW="10" />
+                        <Progress m={"20px 0"} value={el.current_funds} max={el.goal} colorScheme="green" minW="10" />
                         <Divider  borderColor={"#c8c8c8"} m={"25px 0px"}/>
                   <Button
           
@@ -240,13 +303,32 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 borderRadius={"0"}
                 fontWeight={"300"}
                 bg={  "#f7b70d"}
-              
+                onClick={()=>{if(isAuth){
+                    setFlags(!flags)
+                    setSignOpen(!SignOpen)
+                
+                }else{
+                    setFlags(!flags)
+                    toast({
+                        title: "Kindly Login.",
+                        position: "top",
+                        description: "To contribute us.",
+                        status: "info",
+                        duration: 2000,
+                        isClosable: true,
+                      });
+                }
+                  
+                   }}
                 _hover={{ bgColor: "#79ab2f" }}
                 color={"white"}
                 colorScheme="black"
               >
                 DONATE US
               </Button>
+              {SignOpen && <PaymentModel
+            onOpens={SignOpen} 
+            LetClose={SignClose} />}
               <Divider  borderColor={"#c8c8c8"} mt={"25px"}/>
                         <br />
           
@@ -258,7 +340,7 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                                 width="15%"
                             />
                             <Text fontSize="22" m={"0 5px"}  letterSpacing={"1px"} fontWeight={"600"} fontFamily={'DM Serif Display'}>
-                                12 People Donated
+                                {el.donators?.length} People Donated
                             </Text>
                         </Stack>
                         <br />

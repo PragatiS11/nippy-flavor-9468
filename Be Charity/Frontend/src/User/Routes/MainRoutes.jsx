@@ -22,7 +22,7 @@ const MainRoutes = () => {
             <Route path='/donation' element={<DonationPage />} />
             <Route path='/thankyou' element={<ThankYou />} />
             <Route path='/payment' element={<PaymentPage />} />
-            <Route path='/donation/single' element={<SingleDonationPage />} />
+            <Route path='/donate-us/:id' element={<SingleDonationPage />} />
             <Route path='/about-us' element={<About />} />
             <Route path='/donate-us' element={<Donate />} />
             <Route path='/volunteers' element={<Voluntears />} />
