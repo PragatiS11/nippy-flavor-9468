@@ -105,12 +105,14 @@ onClose()
 
 
   }
-
+  let isAuth=Cookies.get("User-token") || false;
   useEffect(()=>{
+    if(isAuth){
     UserDataRequest().then(res=>setName(res.data.name))
+    }
   },[])
 
-  let isAuth=Cookies.get("User-token") || false;
+
 
 
 
