@@ -62,7 +62,7 @@ LogoutRequest().then(res=>{
     isClosable: true,
   })
 })
-Cookies.set('User-token',"")
+Cookies.set('User-token',"", { expires: 365 })
 onClose()
 }
 
@@ -75,7 +75,7 @@ let obj={
 }
 
 LoginRequest(obj).then(res=>{
-  Cookies.set('User-token', res.data.token)
+  Cookies.set('User-token', res.data.token, { expires: 365 })
  
   
   if(res.data.msg=="User successfully logined."){
@@ -87,7 +87,10 @@ LoginRequest(obj).then(res=>{
       duration: 2000,
       isClosable: true,
     })
-    UserDataRequest().then(res=>setName(res.data.name))
+   
+    setPassword("");
+setUsername("");
+onClose()
   }else{
     toast({
       title: res.data.msg,
@@ -101,12 +104,11 @@ LoginRequest(obj).then(res=>{
 })
 
 
-
-
-setPassword("");
-setUsername("");
-onClose()
   }
+
+  useEffect(()=>{
+    UserDataRequest().then(res=>setName(res.data.name))
+  },[])
 
   let isAuth=Cookies.get("User-token") || false;
 

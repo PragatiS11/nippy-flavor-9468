@@ -1,0 +1,163 @@
+import React, { useState } from 'react';
+import {
+  Button,
+  Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useToast,
+  InputLeftElement,
+  InputGroup,
+  InputRightElement,
+  Text,
+  Box,
+} from '@chakra-ui/react';
+import Payment from './Payment';
+
+
+
+
+
+
+export const PaymentModel = ({onOpens,LetClose}) => {
+    const toast = useToast()
+
+
+  const [formData, setFormData] = useState({
+    name:'',
+    email:'',
+    password:'',
+    city:'',
+    image:"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png",
+    isAdmin:false,
+    isVolunteers:false
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSignup = () => {
+   
+//   RegisterRequest(formData).then(res=>{
+    
+//     toast({
+//       title: res.data.msg,
+//       position: 'top',
+//       description: "You can login to our website",
+//       status: 'success',
+//       duration: 5000,
+//       isClosable: true,
+//     });
+    
+ 
+//   })
+   
+  setFormData({
+    name:'',
+    email:'',
+    password:'',
+    city:'',
+    image:"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png",
+    isAdmin:false,
+    isVolunteers:false
+  })
+  LetClose();
+  };
+
+  return (
+    <Modal isOpen={onOpens} onClose={LetClose} size="lg"  isCentered >
+      <ModalOverlay />
+      <ModalContent fontFamily={"poppins"} color={"black"} borderRadius={"0px"}>
+     
+        <ModalHeader border="none" fontWeight={"bold"}  
+              fontSize="28" textAlign={"center"}  fontFamily={"DM Serif Display"} letterSpacing={"1px"} >Payment Section</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+      
+         
+      
+          <Payment />
+           </ModalBody>
+          {/* <Input
+           variant="flushed"
+            name="name"
+            placeholder="Card Number"
+            borderBottom={"1px solid black"}
+            value={formData.name}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          
+          <Input
+           variant="flushed"
+            name="email"
+            type="email"
+            borderBottom={"1px solid black"}
+            placeholder="Expiry Date"
+            value={formData.email}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+           variant="flushed"
+           borderBottom={"1px solid black"}
+           name="city"
+            placeholder="CVV"
+            value={formData.city}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+          <Input
+           variant="flushed"
+           borderBottom={"1px solid black"}
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            marginBottom={4}
+            alignItems={"center"}  fontSize={"16px"} justifyContent={"center"}
+          />
+        </ModalBody>
+
+        <ModalFooter>
+
+      
+            <Button
+           
+              fontSize="16"
+              w="90%"
+     
+              bg="#79ab2f"
+              _hover={{ bgColor: "#df8c09" }}
+              letterSpacing={"1px"}
+              onClick={handleSignup}
+            m={"10px auto"}
+        
+       
+            borderRadius={"0"}
+            fontWeight={"300"}
+          
+            color={"white"}
+            colorScheme="black"
+          >
+           SUBMIT
+          </Button> */}
+           <ModalFooter>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};

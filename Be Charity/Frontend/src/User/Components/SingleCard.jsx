@@ -14,6 +14,7 @@ const OfflineData = ({data}) => {
         {data?.map((el, index) => (
           <RepositoryCard
             key={index}
+            id={el._id}
             title={el.title}
             description={el.description}
             cover={el.image}

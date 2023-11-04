@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   chakra,
   Box,
@@ -16,7 +16,8 @@ import {
 Stack,
 Image,
 InputGroup,
-InputRightElement
+InputRightElement,
+InputLeftElement
 } from "@chakra-ui/react";
 import { PiEyeBold,PiEyeClosedBold } from "react-icons/pi";
 import { Fade,Slide } from "react-awesome-reveal";
@@ -31,6 +32,17 @@ const Payment= () => {
   
 
 const [show, setShow] = React.useState(false)
+const [amount,setAmount]=useState("");
+let Method={
+  cardNumber:"",
+  cvv:"",
+  expiryDate:"",
+  UPIid:"",
+  UPIpassword:"",
+  NBid:"",
+NBpassword:""
+};
+const [meth,setMeth]=useState(Method);
 const handleClick = () => {setShow(!show)}
 let Navigate=useNavigate()
 const toast = useToast()
@@ -38,53 +50,72 @@ const toast = useToast()
 
 function HandleSubmit(e){
 e.preventDefault();
-toast({
-    title: 'Payment Succesfully',
-    description: "You have brought our package.",
-    status: 'success',
-    duration: 3000,
-    isClosable: true,
-  })
+console.log(method);
+// toast({
+//     title: 'Payment Succesfully',
+//     description: "You have brought our package.",
+//     status: 'success',
+//     duration: 3000,
+//     isClosable: true,
+//   })
 
 
-Navigate("/")
+// Navigate("/")
 }
 
 
   return (
 <>
-  <Box  fontFamily="poppins"  color={"black"} w={"70%"} m={"auto"} mt={"10px"}>
+
+<InputGroup m={"auto"} mt={5} mb={8} w={"80%"} border={"1px solid black"} borderRadius={"none"}>
+    <InputLeftElement
+      pointerEvents='none'
+      color='black'
+      fontSize='1.2em'
+      children='$'
+    />
+      <Input  type='number' onChange={(e)=>setAmount(+e.target.value)} value={amount} borderRadius={"none"} fontSize={"20"}  textAlign={"right"} fontWeight={"600"}
+            required  placeholder='Enter Donation Amount' 
+         /> 
+<InputRightElement
+      pointerEvents='none'
+      color='black'
+   fontSize="18"
+      children='.00'
+    />
+  </InputGroup>
+  <Box  fontFamily="poppins"  color={"black"} w={"100%"} m={"auto"} mt={"10px"}>
 <Tabs isFitted variant='unstyled' >
   <TabList mb='1em'>
-    <Tab>Credit/Debit Card</Tab>
+    <Tab>Card Payment</Tab>
     <Tab>UPI Payment</Tab>
     <Tab>Net Banking</Tab>
   </TabList>
      <TabIndicator
       mt="-1.5px"
-      height="2px"
+      height="2.5px"
       bg="#79ab2f"
       borderRadius="1px"
     />
   <TabPanels>
     <TabPanel>
   
-    <Stack direction={"column"} w={{base:300,md:450}} m={"auto"}  textAlign={"center"} placeItems={"center"}>
+    <Stack direction={"column"} w={350} m={"auto"}  textAlign={"center"} placeItems={"center"}>
 
 <form action="" onSubmit={HandleSubmit}>
         <Input size='lg' type='number' variant="flushed"
-           borderBottom={"2px solid black"} mt={20} mb={8}   required  placeholder='Card Number' 
+           borderBottom={"2px solid black"} mt={5}    required  placeholder='Card Number' 
          />
    <SimpleGrid columns={2} >
          <Input size='lg' type='number' variant="flushed"
-           borderBottom={"2px solid black"}  mt={"20px"} w={{base:145,md:200}} mb={8} mr={"70px"}  required  placeholder='Expiry Year' 
+           borderBottom={"2px solid black"}  mt={7} w={"95%"}  required  placeholder='Expiry Year' 
          />   
-   <Input size='lg' type='number' mt={"20px"} variant="flushed"
-           borderBottom={"2px solid black"} mb={8} w={{base:125,md:200}} ml={"25px"}  required  placeholder='CVV' 
+   <Input size='lg' type='number'  variant="flushed"
+           borderBottom={"2px solid black"} mb={8} w={"95%"}  mt={7} ml={5}  required  placeholder='CVV' 
          />    
       </SimpleGrid>
       <Button h={"50px"} type='submit' w={{base:130,md:250}}
-          mt={"35px"}
+          mt={5}
         
           letterSpacing={"2px"}
                 borderRadius={"0"}
@@ -104,10 +135,10 @@ Navigate("/")
   
     <TabPanel>
  
-    <Stack direction={"column"} w={{base:300,md:450}} m={"auto"}  textAlign={"center"} placeItems={"center"}>
+    <Stack direction={"column"}  m={"auto"}  textAlign={"center"} placeItems={"center"}>
 
     <form action=""  onSubmit={HandleSubmit}>
-    <Input mt={20} mb={5}
+    <Input mt={5} 
            variant="flushed"
            borderBottom={"2px solid black"}
            size='lg' type='text' 
@@ -117,7 +148,7 @@ Navigate("/")
           />
 
 
-<InputGroup  w={{base:300,md:450}} mt={4}  variant="flushed"
+<InputGroup   mt={7}  variant="flushed"
            borderBottom={"1px solid black"}
            size='lg' type='text' 
         required  placeholder='UPI ID' >
@@ -138,7 +169,7 @@ required
 </InputRightElement>
 </InputGroup>
 <Button h={"50px"} type='submit' w={{base:130,md:250}}
-          mt={"45px"}
+          mt={12}
         
           letterSpacing={"2px"}
                 borderRadius={"0"}
@@ -157,21 +188,21 @@ required
 </TabPanel>
 <TabPanel>
 
-<Stack direction={"column"} w={{base:300,md:450}} m={"auto"}  textAlign={"center"} placeItems={"center"}>
+<Stack direction={"column"}  m={"auto"}  textAlign={"center"} placeItems={"center"}>
 
 <form action="" onSubmit={HandleSubmit}>
 
         <Input size='lg' type='text' variant="flushed"
-           borderBottom={"2px solid black"} mt={20} mb={8}   required  placeholder='User Name' 
+           borderBottom={"2px solid black"} mt={5}    required  placeholder='User Name' 
          />
         
-    <InputGroup size='lg' w={{base:300,md:450}} mt={4} >
+    <InputGroup size='lg'  mt={7}   variant="flushed"
+           borderBottom={"1px solid black"}>
       <Input
         pr='4.5rem'
         type={show ? 'text' : 'password'}
         placeholder='Password'
-        variant="flushed"
-           borderBottom={"2px solid black"}
+      
    
         required
       />
@@ -184,7 +215,7 @@ required
       </InputRightElement>
     </InputGroup>
     <Button h={"50px"} type='submit' w={{base:130,md:250}}
-          mt={"45px"}
+          mt={12}
         
           letterSpacing={"2px"}
                 borderRadius={"0"}

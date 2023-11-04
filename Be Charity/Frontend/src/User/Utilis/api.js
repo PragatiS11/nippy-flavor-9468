@@ -36,12 +36,19 @@ export const UserDataRequest = () => {
   );
 };
 
-
+//All-data
 export const DonationRequest = () => {
     return axios.get(
       DonationApi+"/"
     );
   };
+
+  //Single-data
+export const DonationSingleRequest = (id) => {
+  return axios.get(
+    DonationApi+"/"+id
+  );
+};
 
 export const GetDataByUserId=(id)=>{
   return axios.get(UserApi+"/user-data-by-id/"+id);
