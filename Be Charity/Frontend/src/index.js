@@ -5,16 +5,18 @@ import Navbar from "./User/Components/Navbar"
 import MainRoutes from './User/Routes/MainRoutes';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'react-redux';
+import { store } from './User/Redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
+<Provider store={store}>
 <BrowserRouter>
 <ChakraProvider>
     <MainRoutes />
   </ChakraProvider>
   </BrowserRouter>
-
+</Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

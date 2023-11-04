@@ -13,16 +13,16 @@ const HomePage = () => {
         style={{
           backgroundImage: `url('${BGImage}')`,
           backgroundSize: "cover",
-          backgroundPosition:"center",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        h={["300px","720px"]}
+        h={["300px", "720px"]}
       >
         <Navbar />
-        <Box mt={"150px"} ml={"120px"} w={["100px","500px"]}>
+        <Box mt={"150px"} ml={"120px"} w={["100px", "500px"]}>
           <Text
             fontWeight={"500"}
-            fontSize={["30","44"]}
+            fontSize={["30", "44"]}
             lineHeight={"50px"}
             fontFamily={"DM Serif Display"}
           >

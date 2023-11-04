@@ -16,10 +16,12 @@ import ProfileCardAdmin from "../Components/ProfileCardAdmin";
 const UserByAdmin = ({ id }) => {
   return (
     <>
-      /admin/singleUserID ,{id}
+      {/* /admin/singleUserID ,{id} */}
+      {/* single user page */}
+
       <Card>
         <CardHeader>
-          <Heading size="md">Donator Report</Heading>
+          {/* <Heading size="md">Donator Report</Heading> */}
         </CardHeader>
 
         <CardBody>
