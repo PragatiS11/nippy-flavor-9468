@@ -2,74 +2,32 @@ import React, { useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import Chart from "react-apexcharts";
+import { Chart } from "react-google-charts";
 
-const data = [
-  {
-    category: "Lithuania",
-    value: 501.9,
-  },
-  {
-    category: "Czech Republic",
-    value: 301.9,
-  },
-  {
-    category: "Ireland",
-    value: 201.1,
-  },
-  {
-    category: "Germany",
-    value: 165.8,
-  },
-  {
-    category: "Australia",
-    value: 139.9,
-  },
-  {
-    category: "Austria",
-    value: 128.3,
-  },
-  {
-    category: "UK",
-    value: 99,
-  },
-  {
-    category: "Belgium",
-    value: 60,
-  },
-  {
-    category: "Netherlands",
-    value: 50,
-  },
-];
 const Dashboard = () => {
   const [date, setDate] = useState(new Date());
-  const [Barchartdata, setData] = useState([
-    {
-      name: "Category",
-      data: [38, 30, 20, 5], // Replace with your actual data
-    },
+  const [ChartGlobalData, setData] = useState([
+    ["Category", "Goal", "Raised"],
+    ["Medical Care", 1000, 400],
+    ["Healthy Food", 1170, 460],
+    ["Pure Water", 660, 1120],
+    ["Education", 1030, 540],
   ]);
-  const [options, setOptions] = useState({
+  const [baroptions, setOptions] = useState({
     chart: {
-      toolbar: {
-        show: false,
-      },
+      title: "Empowering Change: Fund Collection Report",
+      subtitle: "Transforming Contributions into Impact",
     },
-    xaxis: {
-      categories: ["Food", "Pure Water", "Education", "Medical Care"],
-      labels: {
-        style: {
-          fontSize: "12px",
-        },
-      },
-    },
-    yaxis: {
-      title: {
-        text: "Amount (Rupees)",
-      },
-    },
-    colors: ["#008FFB", "#169c71", "#fb9700", "#008FFB"], // You can customize the colors
+  });
+  const [pieOptions, setPieoptions] = useState({
+    title: "3D representation of Funds raised",
+    is3D: true,
+  });
+
+  const [lineOPtions, setLineOptions] = useState({
+    title: "Company Performance",
+    curveType: "function",
+    legend: { position: "bottom" },
   });
 
   const onChange = (newDate) => {
@@ -109,12 +67,13 @@ const Dashboard = () => {
           style={{ borderRadius: "10px" }}
         >
           <Chart
-            options={options}
-            series={Barchartdata}
-            type="bar"
+            chartType="Bar"
             width="100%"
             height="100%"
+            data={ChartGlobalData}
+            options={baroptions}
           />
+
           {/* <h6 style={{ textAlign: "center" }}>Bar</h6> */}
         </GridItem>
 
@@ -125,7 +84,14 @@ const Dashboard = () => {
           bg="lightgrey"
           style={{ borderRadius: "10px" }}
         >
-          <h6 style={{ textAlign: "center" }}>Pie</h6>
+          <Chart
+            chartType="PieChart"
+            data={ChartGlobalData}
+            options={pieOptions}
+            width={"100%"}
+            height={"100%"}
+          />
+          {/* <h6 style={{ textAlign: "center" }}>Pie</h6> */}
         </GridItem>
 
         {/* ======================  line chart  ============== */}
@@ -135,7 +101,14 @@ const Dashboard = () => {
           bg="lightgrey"
           style={{ borderRadius: "10px" }}
         >
-          <h6 style={{ textAlign: "center" }}>Line</h6>
+          <Chart
+            chartType="LineChart"
+            width="100%"
+            height="100%"
+            data={ChartGlobalData}
+            options={lineOPtions}
+          />
+          {/* <h6 style={{ textAlign: "center" }}>Line</h6> */}
         </GridItem>
       </Grid>
     </div>

@@ -4,7 +4,7 @@ import React from "react";
 const ProfileCardAdmin = () => {
   return (
     <div>
-      ProfileCardAdmin
+      {/* ProfileCardAdmin */}
       <Card
         m={"auto"}
         width={{

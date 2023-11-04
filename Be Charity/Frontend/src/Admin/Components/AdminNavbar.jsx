@@ -53,7 +53,7 @@ const LinkItems = [
     link: "/admin/category/",
   },
   { name: "Events", icon: FiStar, link: "/admin/events/" },
-  { name: "Manage", icon: FiSettings, link: "/admin/settings/" },
+  // { name: "Manage", icon: FiSettings, link: "/admin/settings/" },
 ];
 
 const SidebarContent = ({ setSearchParams, setlink, onClose, ...rest }) => {
@@ -225,11 +225,11 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
               >
                 Profile
               </MenuItem>
-              <MenuItem
+              {/* <MenuItem
                 onClick={() => setSearchParams({ path: "/admin/settings/" })}
               >
                 Manage
-              </MenuItem>
+              </MenuItem> */}
               {/* <MenuItem>Billing</MenuItem> */}
               <MenuDivider />
               <MenuItem onClick={() => navigate("/")}>Sign out</MenuItem>
