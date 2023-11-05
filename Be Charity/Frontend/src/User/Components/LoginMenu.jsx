@@ -155,10 +155,24 @@ if(data.isAuth){
               
           <PopoverBody >
          
-      
+          <Button
+              colorScheme="white"
+              fontSize="16"
+              w="100%" textAlign={"center"}
+              m={"10px auto"}
+              fontWeight="400"
+              borderRadius={0}
+              bg="#79ab2f"
+              _hover={{ bgColor: "#df8c09" }}
+              letterSpacing={"1px"}
+              onClick={()=>Navigate("/user-profile")}
+            >
+              User Profile
+            </Button>
            
         
             <Button
+               borderRadius={0}
               colorScheme="white"
               fontSize="16"
               w="100%"

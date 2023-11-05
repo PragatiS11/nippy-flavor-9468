@@ -14,9 +14,23 @@ import OfflineData from '../Components/SingleCard';
 import Footer from '../Components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsData } from '../Redux/Donation/action';
+import { CatchPaymentByUserIdRequest } from '../Utilis/api';
+
 const UserProfile = () => {
   const dispatch = useDispatch();
 
+ const data=useSelector((store)=>(store.AuthReducer.userData))
+
+const [payment,setPayment]=useState([]);
+
+
+
+
+useEffect(()=>{
+CatchPaymentByUserIdRequest(data?._id).then(res=>{
+    setPayment(res.data)
+})
+},[])
 
   return (
     <>
@@ -37,12 +51,13 @@ const UserProfile = () => {
         <Flex alignItems={"center"} m={"auto"} w={"80%"} justifyContent="space-evenly" mt={"50px"}>
           <Flex alignItems={"center"} justifyContent={"space-evenly"} margin={"auto"}>
             <Box>
-              <Image w={"40%"} src={"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png"}></Image>
+              <Image w={"40%"} src={data?.image}></Image>
+   
             </Box>
-            <Box  mt={"30"} marginLeft={"-150px"}>
-              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} fontWeight={"bold"}fontSize={"20"}>Name : Blessmi K</Text>
-              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} fontWeight={"bold"}fontSize={"20"}>Email : kblessmi2001@gmail.com</Text>
-              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} fontWeight={"bold"}fontSize={"20"}>City  : Mulagumoodu</Text>
+            <Box  mt={"30"} marginLeft={"-150px"} fontWeight={"600"}> 
+              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} letterSpacing={"0.5px"} fontSize={"20"}>Name : {data?.name}</Text>
+              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"}  letterSpacing={"0.5px"} fontSize={"20"}>Email : {data?.email}</Text>
+              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"}  letterSpacing={"0.5px"}  fontSize={"20"}>City  : {data?.city}</Text>
             </Box>
           </Flex>
 
@@ -51,19 +66,24 @@ const UserProfile = () => {
 
         <TableContainer m={"auto"} w="70%" size="sm" border="1px solid black" mt="50">
           <Table variant='simple' m={"auto"} border="1px solid black"  >
-            <Thead border="1px solid black" color={"white"} >
-              <Tr bg="black">
-                <Th color={"white"}>Time</Th>
-                <Th color={"white"}>Donation Name</Th>
-                <Th color={"white"}>Money</Th>
+            <Thead border="1px solid black" color={"white"} m={"10px"}>
+              <Tr m={"10px"} bg="black" >
+                <Th fontFamily={'DM Serif Display'} fontSize={"20"} fontWeight={400} textTransform={"capitalize"} color={"white"}>Time</Th>
+                <Th fontFamily={'DM Serif Display'} fontSize={"20"} fontWeight={400} textTransform={"capitalize"} color={"white"}>Fundraiser name</Th>
+             
+                <Th fontFamily={'DM Serif Display'} fontSize={"20"} fontWeight={400} textTransform={"capitalize"} color={"white"}>Amount</Th>
+              
               </Tr>
             </Thead>
             <Tbody border="1px solid black">
-              <Tr>
-                <Td>Sun,Nov 05 2023</Td>
-                <Td>Medical Equipment</Td>
-                <Td>$ 1000</Td>
-              </Tr>
+            {payment?.reverse().map((el) => (
+  <Tr key={el.id}>
+    <Td>{el.Time.split(" ").slice(0, 5).join(" ")}</Td>
+    <Td>{el.Donation_name}</Td>
+    <Td>$ {el.money}</Td>
+  </Tr>
+))}
+              
             </Tbody>
           </Table>
         </TableContainer>

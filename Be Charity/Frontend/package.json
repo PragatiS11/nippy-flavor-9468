@@ -7,6 +7,7 @@
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
     "@codecraftkit/chart": "^1.0.4",
+    "@codecraftkit/core": "^1.1.110",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome": "^1.1.8",

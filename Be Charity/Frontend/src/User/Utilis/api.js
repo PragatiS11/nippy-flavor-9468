@@ -73,6 +73,12 @@ export const CatchPaymentByDonationIdRequest = (id) => {
   return axios.get(PaymentURL+"/",{params:{donation_id:id}});
 };
 
+//Catch Payment By User ID
+export const CatchPaymentByUserIdRequest = (id) => {
+  return axios.get(PaymentURL+"/",{params:{user_id:id}});
+};
+
+
 //Get Volunteers
 export const GetVolunteersRequest = () => {
   return axios.get(UserApi+"/get-volunteers");
