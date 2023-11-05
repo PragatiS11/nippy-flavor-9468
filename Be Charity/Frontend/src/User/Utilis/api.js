@@ -85,7 +85,7 @@ export const ForgetPassword = (obj) => {
 };
 
 //Reset Password Link
-export const ResetPassword = (obj) => {
+export const ResetPasswordRequest = (obj) => {
   return  axios.patch(UserApi + "/reset-password", obj);     
 };
 

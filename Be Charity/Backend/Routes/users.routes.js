@@ -85,11 +85,12 @@ UserRouter.post("/forget-password",async(req,res)=>{
 //Reset-password
 UserRouter.patch("/reset-password",async(req,res)=>{
     try {
+        let user=await UserModel.findOne({email:req.body.email})
             bcrypt.hash(req.body.password, 2, async(err, hash)=>{
                 if(err){
                     res.status(200).send({msg:err})
                 }else{
-                    await UserModel.findByIdAndUpdate({email},{password:hash});
+                    await UserModel.findByIdAndUpdate({_id:user._id},{password:hash});
                     res.status(200).send({msg:"Password Succesfully Changed!."})
                 }
             });
