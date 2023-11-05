@@ -58,8 +58,9 @@ const AdminUsers = () => {
         <Text
           textAlign={"center"}
           fontSize={"35px"}
-          fontWeight={"bold"}
-          bg="white"
+          fontWeight={"600"}
+          letterSpacing={"0.8px"}
+          fontFamily={"DM Serif Display"}
           px="4"
         >
           Donators
@@ -79,9 +80,7 @@ const AdminUsers = () => {
               <Th textAlign="center" fontSize={fontSize}>
                 E-mail
               </Th>
-              <Th textAlign="center" fontSize={fontSize}>
-                Donations
-              </Th>
+             
               <Th textAlign="center" fontSize={fontSize}>
                 Volunteer
               </Th>
@@ -101,9 +100,7 @@ const AdminUsers = () => {
                 <Td textAlign="center" fontSize={fontSize}>
                   {ele.email}
                 </Td>
-                <Td textAlign="center" fontSize={fontSize}>
-                  {/* {ele.orders.length} */}
-                </Td>
+               
                 <Td textAlign="center" fontSize={fontSize}>
                   {/* volunteership */}
                   {ele.isVolunteers === true ? "Yes" : "No"}
