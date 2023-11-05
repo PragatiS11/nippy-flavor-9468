@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-const UserProfileContents = () => {
+import { DonationSingleRequest } from "../../User/Utilis/api";
+const UserProfileContents = ({ id }) => {
+  console.log(id, "content");
+  useEffect(() => {
+    DonationSingleRequest(id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <Tabs isFitted variant="enclosed">
       <TabList mb="1em">
