@@ -1,14 +1,64 @@
 const express=require("express");
-const { PaymentModel } = require("../Model/donation.model");
+const nodemailer=require("nodemailer")
+const { PaymentModel } = require("../Model/payment.model");
+const { DonationModel } = require("../Model/donation.model");
+
 // const { auth } = require("../Middleware/auth.middleware");
 const PaymentRouter=express.Router();
 // PaymentRouter.use(auth)
 //Post the Post
 PaymentRouter.post("/add",async(req,res)=>{
+
     try {
      const Post=new PaymentModel(req.body);
      await Post.save();
-     res.status(200).send({msg:"Post is added.",Added_Post:req.body});
+
+     const UpdateDonationData=await DonationModel.findByIdAndUpdate({_id:req.body.donation_id},{current_funds:req.body.totalDonation})
+    
+   var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'becharity6@gmail.com',
+      pass: 'gcnp ptnp tdoc wmms'
+    }
+  });
+  
+  var mailOptions = {
+ 
+      from: 'becharity6@gmail.com',
+      to: req.body.email,
+      subject: 'Thank You for Your Donation',
+      text: `
+        Dear ${req.body.Username},
+    
+        Thank you for your generous donation to our organization. Your support means a lot to us, and it will make a real difference in our mission.
+    
+        Donation Details:
+        - Donation Name: ${req.body.Donation_name}
+        - Amount: ${req.body.money}
+        - Payment Type: ${req.body.payment_type}
+        - Date: ${req.body.Time}
+    
+        We appreciate your contribution and commitment to our cause. Your support allows us to continue our work and make a positive impact in the community.
+    
+        If you have any questions or need further information, please don't hesitate to contact us.
+    
+        Thank you once again for your support. We look forward to your continued involvement in our charitable efforts.
+    
+        Sincerely,
+        BeCharity Organization.
+      `
+    
+  };
+  
+  transporter.sendMail(mailOptions, (error, info)=> { 
+    if (error) {
+      res.send({error : error,info})
+    } else {
+      return res.send({status : info})
+}
+});
+
     } catch (error) {
      res.status(400).send({msg:error})
     }
@@ -17,10 +67,13 @@ PaymentRouter.post("/add",async(req,res)=>{
 
 
 //Get the Post With Queries
-PaymentRouter.get("",async(req,res)=>{
+PaymentRouter.get("/",async(req,res)=>{
     try {
    //   let query={}
  
+ 
+      const Payment=await PaymentModel.find(req.query);
+      res.status(200).send(Payment);
    
        
         
@@ -29,8 +82,7 @@ PaymentRouter.get("",async(req,res)=>{
    //       const totalPost=await PaymentModel.count(query);
    //       const totalPages = Math.ceil(totalPost / limit);
    //           const Post = await PaymentModel.find(query).skip(skip).limit(limit);
-   const Payment=await PaymentModel.find();
-     res.status(200).send(Payment);
+ 
     } catch (error) {
      res.status(400).send({msg:error})
     }

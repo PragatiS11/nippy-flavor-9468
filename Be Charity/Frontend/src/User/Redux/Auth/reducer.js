@@ -1,24 +1,34 @@
+import Cookies from "js-cookie";
+import { AUTH_FAILURE, AUTH_LOGOUT_SUCCESS, AUTH_REQUEST, AUTH_SUCCESS, AUTH_SUCCESS_MSG, GET_SINGLE_USER_DATA } from "../actionTypes";
 
-let ans=localStorage.getItem("isAuth");
+let User_token=Cookies.get("User-token") || "";
 
 let initialState={
-isAuth:ans=="true"?true:false,
+isAuth:User_token?true:false,
+loginMessage:"",
+logoutMessage:"Logged out Successfully.",
 isLoading:false,
 isError:false,
-token:localStorage.getItem("token") || "",
+userData:{},
+token:User_token,
 isAdmin:false
 }
 
-// Create the reducer with types
-export const reducer = (
-    state= initialState,
-    action // Replace 'any' with the actual type of payload
-  ) => {
-    switch (action.type) {
+
+export const reducer = (state= initialState,action ) => {
+  const {type,payload}=action;
+    switch (type) {
+      case AUTH_REQUEST:{
+        return {
+          ...state,
+          isLoading:true
+        }
+      }
       case AUTH_SUCCESS: {
         return {
           ...state,
-token:action.payload,
+          loginMessage:payload.msg,
+token:payload.token || false,
 isAuth:true,
 isLoading:false,
 isError:false
@@ -27,20 +37,36 @@ isError:false
       case AUTH_FAILURE: {
         return {
           ...state,
-          isError:true // Use type assertion or handle the actual conversion
+          isError:true 
         };
       }
       case AUTH_LOGOUT_SUCCESS:{
         return {
           ...state,
           isAuth:false,
+          loginMessage:"",
+          logoutMessage:payload,
 isLoading:false,
 isError:false,
 token:""
         }
       }
+      case AUTH_SUCCESS_MSG:{
+        return {
+          ...state,
+          loginMessage:payload,
+isLoading:false,
+isError:false
+        };
+      }
+      case GET_SINGLE_USER_DATA:{
+        return {
+          ...state,
+          userData:payload
+        }
+      }
       default:
-        return state; // Return the state as is for unknown actions
+        return state; 
     }
   };
   

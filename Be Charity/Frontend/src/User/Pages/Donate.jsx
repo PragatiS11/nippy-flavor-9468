@@ -7,23 +7,25 @@ import BGImage from "../Assests/ngo2-sectionbg2.png"
 import { Box, Button, Flex, Heading, Link, Text,  InputGroup,
   InputLeftElement  } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa';
-import DonationCard from '../Components/DonationCard';
+
 import DonationSkeleton from './DonationSkeleton';
-import { DonationRequest } from '../Utilis/api';
+
 import OfflineData from '../Components/SingleCard';
 import Footer from '../Components/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductsData } from '../Redux/Donation/action';
 const Donate = () => {
+  const dispatch = useDispatch();
+  const data=useSelector((store)=>({
+   donations: store.DonationReducer.products,
+   loading:store.DonationReducer.isLoading,
+   error:store.DonationReducer.isError
+  }))
+
 const [search, setSearch] = useState("");
-let [flags,setFlags]=React.useState(true)
-let [data,setData]=React.useState([]);
-let [loading,setLoading]=React.useState(false)
+
 useEffect(()=>{
-setLoading(true)
-    DonationRequest().then(res=>{
-// console.log(res.data)
-      setData(res.data)
-    setLoading(false)
-    })
+dispatch(getProductsData());
 
 },[])
 
@@ -63,61 +65,7 @@ setLoading(true)
      
 
       </Flex>
-{data.length!==0?<OfflineData data={data} />:<DonationSkeleton /> }
-      <Box
-        fontFamily={"Poppins"}
-        m={"100px"}
-        style={{
-          backgroundImage: `url('https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-wrapbg1.jpg')`,
-          backgroundSize: "cover",
-          height: "450px",
-          backgroundAttachment: "fixed",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <Flex
-          textAlign={"center"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          h={"450px"}
-        >
-          <Box>
-            <Text
-              fontWeight={"500"}
-              fontSize={"55"}
-              lineHeight={"55px"}
-              color={"white"}
-              fontFamily={"DM Serif Display"}
-            >
-              We can't help everyone, <br />
-              but everyone can help someone.
-            </Text>
-            <Box m={"auto"}>
-              <Button
-                m={"30px 10px"}
-                borderRadius={"0"}
-                fontWeight={"300"}
-                bg={"#df8c09"}
-                color={"white"}
-                colorScheme="black"
-              >
-                Donate Us
-              </Button>
-              <Button
-                m={"30px 10px"}
-                borderRadius={"0"}
-                fontWeight={"300"}
-                bg={"#79ab2f"}
-                color={"white"}
-                colorScheme="black"
-              >
-                Become a Voluntear
-              </Button>
-            </Box>{" "}
-          </Box>
-        </Flex>
-      </Box>
-
+{data.donations.length!==0?<OfflineData key={data.donations._id} data={data.donations} />:<DonationSkeleton /> }
       <Footer />
       </Box>
     </>
