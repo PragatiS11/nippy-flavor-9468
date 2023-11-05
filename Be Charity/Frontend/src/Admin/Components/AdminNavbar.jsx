@@ -178,19 +178,19 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
       >
         <Image
           src="https://i.ibb.co/0qSN97p/retina-ngo2.png"
-         w={"50%"}
+          w={"50%"}
           alt=""
         />
         {/*  */}
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
+        {/* <IconButton
           size="lg"
           variant="ghost"
           aria-label="open menu"
           icon={<FiBell />}
-        />
+        /> */}
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -202,7 +202,7 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://media.istockphoto.com/id/508762656/vector/awesome-vector-design-element.jpg?s=612x612&w=0&k=20&c=iIuBEDZuV0rp2kBaT3KeGvNYyQJEQvh9YSmNbKC5eXI="
+                    "https://png.pngtree.com/png-clipart/20201029/ourmid/pngtree-circle-clipart-green-circle-png-image_2381999.jpg"
                   }
                 />
                 <VStack
@@ -211,7 +211,6 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Abhay</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
@@ -225,11 +224,11 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem
+              {/* <MenuItem
                 onClick={() => setSearchParams({ path: "/admin/profile/" })}
               >
                 Profile
-              </MenuItem>
+              </MenuItem> */}
               {/* <MenuItem
                 onClick={() => setSearchParams({ path: "/admin/settings/" })}
               >
