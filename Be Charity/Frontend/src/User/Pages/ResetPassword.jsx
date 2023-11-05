@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { GrSearch } from 'react-icons/gr';
-import { Image, Input, InputRightElement, Select, Stack } from '@chakra-ui/react'
+import { Image, Input, InputRightElement, Select, Stack, useToast } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar"
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import { Box, Button, Flex, Heading, Link, Text,  InputGroup, InputLeftElement  } from '@chakra-ui/react'
@@ -12,11 +12,56 @@ import Footer from '../Components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsData } from '../Redux/Donation/action';
 import { PiEyeBold, PiEyeClosedBold } from 'react-icons/pi';
+import Cookies from 'js-cookie';
 const ResetPassword = () => {
   const dispatch = useDispatch();
-  
-  const [show, setShow] = React.useState(false);
- 
+const toast=useToast();
+const [show,setShow]=useState(false)
+  const [password,setPassword] = React.useState("");
+  const [cp,setCp] = React.useState("");
+ let     email=Cookies.get("forget-password-email") || false;
+function HandleSubmit(e){
+e.preventDefault();
+if(email){
+    if(password!==cp){
+        toast({
+            title: "Check your credentials",
+            position: 'top',
+            description: "Your credentials are not matching!",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
+    }else{
+        let obj={
+            email,password
+        }
+        // console.log(obj)
+        ResetPassword(obj).then(res=>{
+            toast({
+                title: res.data.msg,
+                position: 'top',
+                description: "You can now login.",
+                status: 'success',
+                duration: 2000,
+                isClosable: true,
+              })
+        })
+    }
+
+   
+}else{
+    toast({
+        title: "Your Link Has Been Expired!",
+        position: 'top',
+        description: "Generate another link",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+}
+
+}
 
   const handleClick = () => {
     setShow(!show);
@@ -37,16 +82,16 @@ const ResetPassword = () => {
         <Text fontWeight={'500'} fontSize={["30","45"]} lineHeight={"60px"} textAlign={"center"}  fontFamily={'DM Serif Display'}>Reset Your Password</Text>
         </Box>
         <Stack direction="column" m="auto" textAlign="center" placeItems="center">
-                <form >
-                <InputGroup mt={10} variant="flushed" borderBottom="1px solid black" size="lg" type="text" required placeholder="UPI ID">
-                    <Input pr="4.5rem" type={show ? 'text' : 'password'} placeholder="Password" 
+                <form onSubmit={HandleSubmit}>
+                <InputGroup mt={10} variant="flushed" borderBottom="1px solid black" size="lg" type="text"  required placeholder="UPI ID">
+                    <Input pr="4.5rem" type={show ? 'text' : 'password'} placeholder="Password" required  value={password} onChange={(e)=>setPassword(e.target.value)}
               />
                     <InputRightElement width="4.5rem"  onClick={handleClick} >
                       {show ? <PiEyeBold size={20} /> : <PiEyeClosedBold size={20} />}
                     </InputRightElement>
                   </InputGroup>
-                  <InputGroup mt={7} variant="flushed" borderBottom="1px solid black" size="lg" type="text" required placeholder="UPI ID">
-                    <Input pr="4.5rem" type={show ? 'text' : 'password'} placeholder="Confirm Password" required 
+                  <InputGroup mt={7} variant="flushed" borderBottom="1px solid black" size="lg"  type="text" required placeholder="UPI ID">
+                    <Input pr="4.5rem" type={show ? 'text' : 'password'} placeholder="Confirm Password" required value={cp} onChange={(e)=>setCp(e.target.value)}
                  
                 />
                     <InputRightElement width="4.5rem"  onClick={handleClick}>

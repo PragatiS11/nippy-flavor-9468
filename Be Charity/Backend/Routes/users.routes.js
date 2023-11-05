@@ -72,7 +72,7 @@ UserRouter.post("/forget-password",async(req,res)=>{
             if (error) {
               res.send({error : error,info})
             } else {
-              return res.send({status : info})
+                res.status(200).send({msg:"Check your email for the link."})
         }
         });
    }
@@ -80,6 +80,25 @@ UserRouter.post("/forget-password",async(req,res)=>{
      res.status(400).send({msg:error})
     }
  })
+
+
+//Reset-password
+UserRouter.patch("/reset-password",async(req,res)=>{
+    try {
+            bcrypt.hash(req.body.password, 2, async(err, hash)=>{
+                if(err){
+                    res.status(200).send({msg:err})
+                }else{
+                    await UserModel.findByIdAndUpdate({email},{password:hash});
+                    res.status(200).send({msg:"Password Succesfully Changed!."})
+                }
+            });
+      }
+        catch (error) {
+        res.status(400).send({msg:error})
+ }})
+
+
 
 //User Login
 UserRouter.post("/login",async(req,res)=>{
@@ -127,6 +146,17 @@ UserRouter.get("/user-data",auth,async(req,res)=>{
         res.status(400).send({msg:error})
     }
 })
+
+//All User Data
+UserRouter.get("/all-user-data",async(req,res)=>{
+    try {
+        const userData=await UserModel.find()
+        res.status(200).send(userData)
+    } catch (error) {
+        res.status(400).send({msg:error})
+    }
+})
+
 
 UserRouter.get("/get-volunteers",async(req,res)=>{
     try {
