@@ -40,9 +40,10 @@ export const UserDataRequest = () => {
 };
 
 //All-data
-export const DonationRequest = () => {
+export const DonationRequest = (params) => {
+
     return axios.get(
-      DonationApi+"/"
+      DonationApi+"/",params
     );
   };
 

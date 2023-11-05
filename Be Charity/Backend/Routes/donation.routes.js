@@ -17,19 +17,21 @@ DonationRouter.post("/add",async(req,res)=>{
 
 
 //Get the Post With Queries
-DonationRouter.get("",async(req,res)=>{
+DonationRouter.get("/",async(req,res)=>{
+  
     try {
-   //   let query={}
- 
-   
-       
-        
-   //       let limit=req.query.limit || 3;
-   //       let skip=(req.query.page-1)*3 || 0;
-   //       const totalPost=await DonationModel.count(query);
-   //       const totalPages = Math.ceil(totalPost / limit);
-   //           const Post = await DonationModel.find(query).skip(skip).limit(limit);
-   const Donations=await DonationModel.find();
+      let query={}
+
+      if(req.query.category){
+query.category=req.query.category;
+      }
+
+      if (req.query.q) {
+          query.title = { $regex: req.query.q, $options: 'i' }; 
+      }
+  
+   const Donations=await DonationModel.find(query);
+
      res.status(200).send(Donations);
     } catch (error) {
      res.status(400).send({msg:error})
