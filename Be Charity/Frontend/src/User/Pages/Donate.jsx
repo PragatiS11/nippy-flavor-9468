@@ -26,21 +26,22 @@ const Donate = () => {
   }))
 
   const [searchParam, setSearchParams] = useSearchParams()
-  const [search, setSearch] = useState("");
-  console.log(search)
+  const [search, setSearch] = useState(searchParam.get("query") || "");
 
 
 
-  // const params = {
-  //   params:{
-  //     q:searchParam.get("query"),
-  //     // category:searchParam.getAll("category")
-  //   }
-  // }
-  const [category, setCategory] = useState([]);
+
+
+  const [category, setCategory] = useState(searchParam.get("category") || "");
+  const params = {
+    params:{
+      q:search,
+      category:category
+    }
+  }
 
   const HandleCategory = (e) => {
-    console.log(e.target.value);
+   
     setCategory(e.target.value)
   }
 
@@ -66,7 +67,7 @@ const Donate = () => {
       setSearchParams({});
     }
 
-    dispatch(getProductsData())
+    dispatch(getProductsData(params))
   }, [search, category])
 
 
@@ -96,10 +97,10 @@ const Donate = () => {
               <Input placeholder='Search Here...' _focus={{ boxShadow: "none" }} onChange={(e) => setSearch(e.target.value)} value={search} _hover={{ border: "2px solid black", boxShadow: "none" }} borderRadius={"0px"} border={"1px solid black"} variant='outline' type='search' w={["400px", "400px", "550px"]} />
             </InputGroup>
             <Select _hover={{ border: "2px solid black", boxShadow: "none" }} variant={"outline"} borderRadius={"0px"} border={"1px solid black"} m={"auto 10px"} placeholder="Category" onChange={HandleCategory}>
-              <option value="education">Education</option>
-              <option value="medical">Medical</option>
-              <option value="food">Food</option>
-              <option value="water">Water</option>
+              <option value="Education">Education</option>
+              <option value="Medical">Medical</option>
+              <option value="Food">Food</option>
+              <option value="Pure Water">Water</option>
             </Select>
           </Flex>
 
