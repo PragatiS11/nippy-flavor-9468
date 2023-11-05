@@ -1,4 +1,5 @@
 const express=require("express");
+const nodemailer=require("nodemailer")
 const { UserModel } = require("../Model/users.model");
 const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
@@ -29,20 +30,71 @@ UserRouter.post("/register",async(req,res)=>{
    }
 })
 
+//Forget Password Link
+UserRouter.post("/forget-password",async(req,res)=>{
+    try {
+     const alreadyPresent=await UserModel.findOne({email:req.body.email})
+     if(!alreadyPresent){
+         res.status(200).send({msg:"User Account is not exist."})
+     }else{
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'becharity6@gmail.com',
+              pass: 'gcnp ptnp tdoc wmms'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'becharity6@gmail.com',
+            to: req.body.email,
+            subject: 'Password Reset Request',
+            text: `
+              Dear ${alreadyPresent.name},
+          
+              We received a request to reset your password for your account. To reset your password, please click on the following link:
+          
+              Password Reset Link: http://localhost:3000/user-profile/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU0MzljNzNkODEwZjU2NmIyZTQwNGZjIiwidXNlcm5hbWUiOiJTaHViaGFtIiwiaWF0IjoxNjk4OTMyMjEzfQ.1QDUsrLJZDFuXT5IamFfvEa0LH7FY0q_XknJpEw0KkQ
+          
+              If you did not request a password reset, please ignore this email. Your account is secure, and no changes have been made.
+          
+              If you have any questions or need assistance, please don't hesitate to contact us.
+          
+              Thank you for being a part of BeCharity!
+          
+              Sincerely,
+              BeCharity Organization.
+            `
+          };
+          
+          
+          transporter.sendMail(mailOptions, (error, info)=> { 
+            if (error) {
+              res.send({error : error,info})
+            } else {
+              return res.send({status : info})
+        }
+        });
+   }
+    } catch (error) {
+     res.status(400).send({msg:error})
+    }
+ })
+
 //User Login
 UserRouter.post("/login",async(req,res)=>{
     const {email,password}=req.body;
     try {
      const User=await UserModel.findOne({email})
      if(!User){
-         res.status(200).send({msg:"User is not exist,Please register",token:""})
+         res.status(200).send({msg:"User is not exist,Please register"})
      }else{
         bcrypt.compare(password, User.password,(err, result)=>{
             if(result){
                 let token = jwt.sign({ user_id:User._id ,username:User.name}, 'masai');
                 res.status(200).send({msg:"User successfully logined.",token})
             }else{
-                res.status(200).send({msg:"Password is incorrect",token:""})
+                res.status(200).send({msg:"Password is incorrect"})
             }
         });
 
@@ -70,6 +122,15 @@ UserRouter.get("/logout",async(req,res)=>{
 UserRouter.get("/user-data",auth,async(req,res)=>{
     try {
         const userData=await UserModel.findOne({_id:req.body.user_id})
+        res.status(200).send(userData)
+    } catch (error) {
+        res.status(400).send({msg:error})
+    }
+})
+
+UserRouter.get("/get-volunteers",async(req,res)=>{
+    try {
+        const userData=await UserModel.find({isVolunteers:true})
         res.status(200).send(userData)
     } catch (error) {
         res.status(400).send({msg:error})

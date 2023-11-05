@@ -21,50 +21,30 @@ import BGImage from "../Assests/ngo2-sectionbg2.png"
 import { IoPricetagsOutline } from 'react-icons/io5';
 import Footer from '../Components/Footer';
 import { PaymentModel } from '../Components/PaymentModel';
-import { DonationSingleRequest, GetDataByUserId } from '../Utilis/api';
+
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProductData } from '../Redux/Donation/action';
 
 const SingleDonationPage = () => {
+    const dispatch=useDispatch();
+    const el=useSelector((store)=>(store.DonationReducer.singleProduct))
+    const organizer=useSelector((store)=>(store.DonationReducer.organizer))
+    const payment=useSelector((store)=>(store.DonationReducer.payment))
+   
+const isAuth=useSelector((store)=>(store.AuthReducer.isAuth))
     const [SignOpen, setSignOpen] = useState(false);
-    let { id } = useParams();
+  
     function SignClose() {
       setSignOpen(!SignOpen);
     }
-    let [flags,setFlags]=React.useState(true)
-let [el,setEl]=React.useState("");
-let [organizer,setOrganizer]=React.useState({});
-let [loading,setLoading]=React.useState(false)
 
-function HandleOrganizer(){
-    let id=el.organizer;
+    let { id } = useParams();
 
-    GetDataByUserId(id).then(res=>{
-        setOrganizer(res.data)
-    })
-}
-let isAuth=Cookies.get("User-token") || false;
 let toast=useToast()
 useEffect(()=>{
-setLoading(true)
-if(el){
-    if(organizer){
-        setLoading(false)
-    }else{
-        HandleOrganizer();
-        setLoading(false)
-    }
-   
-
-   
-} else{
-    DonationSingleRequest(id).then(res=>{
-// console.log(res.data)
-      setEl(res.data)
-   
-    })
-}
-    
-},[el,flags])
+dispatch(getSingleProductData(id));
+},[])
 
 // if(loading){
 //     return <Text>Loading...</Text>
@@ -85,7 +65,7 @@ if(el){
             <Box marginTop="50px" >
          
         <Box >
-        <Text fontWeight={'500'} w={"77%"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>{el.title}</Text>
+        <Text fontWeight={'500'} w={"77%"}  m={"auto"} fontSize={["30","45"]} mb={"20px"} lineHeight={"60px"}   fontFamily={'DM Serif Display'}>{el?.title}</Text>
         </Box>
         </Box>
 
@@ -105,15 +85,15 @@ if(el){
                         <br />
                      
                         <Stack direction="row" alignItems="center">
-                            <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By {organizer.name}</Text><RxDotFilled />
+                            <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By {organizer?.name}</Text><RxDotFilled />
                             <Icon as={IoPricetagsOutline} />
-                            <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">{el.category}</Text>
+                            <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">{el?.category}</Text>
                         </Stack>
                         <Divider  borderColor={"#c8c8c8"} mt={"20px"}/>
                         <br />
                       
                         <Text  color={"#666666"} fontWeight={"300"}>
-                           {el.description}
+                           {el?.description}
                         </Text>
                         <br />
                         <Text  color={"#666666"} fontWeight={"300"}>
@@ -134,10 +114,10 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 fontWeight={"300"}
                 bg={  "#f7b70d"}
                 onClick={()=>{if(isAuth){
-                    setFlags(!flags)
+                    
                     setSignOpen(!SignOpen)
                   
-                }else{  setFlags(!flags)
+                }else{  
                     toast({
                         title: "Kindly Login.",
                         position: "top",
@@ -158,19 +138,7 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
               </Button>
    
               <Divider  borderColor={"#c8c8c8"} mt={"35px"}/>
-                        {/* <Stack
-                            direction="row"
-                            alignItems="center"
-                            padding="30px"
-                            boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                        >
-                            <Image
-                                src="https://www.gofundme.com/_next/static/images/lending-hand-7f6fe1e24df6a1af9c53c6c41e31460e.svg"
-                                alt=""
-                                width="100px"
-                            />
-                          
-                        </Stack> */}
+                
                         <br />
                   
                         <Stack>
@@ -221,65 +189,7 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                             </Flex>
                             
                         </Box>
-                        {/* <br />
-         
-                        <br />
-                        <br />
-                        <Stack>
-                            <Heading>Words of support</Heading>
-                            <br />
-                            <Text>Please donate to share words of support.</Text>
-                        </Stack>
-                        <br />
-                        <Box width="40%">
-                            <Stack direction="row" alignItems="center" marginLeft="20px">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="10%"
-                                />
-                                <Box marginLeft="30px">
-                                    <Heading as="h3" size="md">Alexandria Siwecki</Heading>
-                                    <Text>Prayers for your sweet kitty</Text>
-                                </Box>
-                            </Stack>
-                            <br />
-                            <Stack direction="row" alignItems="center" marginLeft="20px">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="10%"
-                                />
-                                <Box marginLeft="30px">
-                                    <Heading as="h3" size="md">Alexandria Siwecki</Heading>
-                                    <Text>Prayers for your sweet kitty</Text>
-                                </Box>
-                            </Stack>
-                            <br />
-                            <Stack direction="row" alignItems="center" marginLeft="20px">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="10%"
-                                />
-                                <Box marginLeft="30px">
-                                    <Heading as="h3" size="md">Alexandria Siwecki</Heading>
-                                    <Text>Prayers for your sweet kitty</Text>
-                                </Box>
-                            </Stack>
-                            <br />
-                            <Stack direction="row" alignItems="center" marginLeft="20px">
-                                <Image
-                                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1j42ss92jz1904rma87z.png"
-                                    alt=""
-                                    width="10%"
-                                />
-                                <Box marginLeft="30px">
-                                    <Heading as="h3" size="md">Alexandria Siwecki</Heading>
-                                    <Text>Prayers for your sweet kitty</Text>
-                                </Box>
-                            </Stack>
-                        </Box>*/}
+                       
                     </Box>
                 </Box> 
                 <Box 
@@ -290,11 +200,11 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 >
                     <Box   marginLeft="30px" marginRight="30px" marginTop="30px">
                         <Text >
-                            <span style={{ fontSize: "22px" }}>${el.current_funds}</span> USD Raised of ${el.goal}
+                            <span style={{ fontSize: "22px" }}>${el?.current_funds}</span> USD Raised of ${el?.goal}
                       
                         </Text>
                         
-                        <Progress m={"20px 0"} value={el.current_funds} max={el.goal} colorScheme="green" minW="10" />
+                        <Progress m={"20px 0"} value={el?.current_funds} max={el?.goal} colorScheme="green" minW="10" />
                         <Divider  borderColor={"#c8c8c8"} m={"25px 0px"}/>
                   <Button
           
@@ -304,11 +214,11 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                 fontWeight={"300"}
                 bg={  "#f7b70d"}
                 onClick={()=>{if(isAuth){
-                    setFlags(!flags)
+                    
                     setSignOpen(!SignOpen)
                 
                 }else{
-                    setFlags(!flags)
+                    
                     toast({
                         title: "Kindly Login.",
                         position: "top",
@@ -326,7 +236,7 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
               >
                 DONATE US
               </Button>
-              {SignOpen && <PaymentModel
+              {SignOpen && <PaymentModel 
             onOpens={SignOpen} 
             LetClose={SignClose} />}
               <Divider  borderColor={"#c8c8c8"} mt={"25px"}/>
@@ -340,7 +250,7 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                                 width="15%"
                             />
                             <Text fontSize="22" m={"0 5px"}  letterSpacing={"1px"} fontWeight={"600"} fontFamily={'DM Serif Display'}>
-                                {el.donators?.length} People Donated
+                                {payment?.length} People Donated
                             </Text>
                         </Stack>
                         <br />
@@ -349,145 +259,46 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                        
                            
                             
-                            <Stack direction="row" alignItems="center">
-                            
-  <Image
+                            <Box  >
+                                {payment?.map(el=>{
+                                    return <>
+                                     <Flex m={"20px auto"}>
+                                          <Image
   
-    src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6xfxq7dt7mye8686nbcj.png"
-    alt="Friendly Image"
-    width="15%"
-    borderRadius="50%"  // Adding rounded corners for a softer look
-    // boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"  // Adding a soft drop shadow
-  />
+  src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6xfxq7dt7mye8686nbcj.png"
+  alt="Friendly Image"
+  width="15%"
+  borderRadius="50%"  // Adding rounded corners for a softer look
+  // boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"  // Adding a soft drop shadow
+/>
 
-                             
-                                <Box marginLeft="15px">
-                                    <Text>Belle Segev</Text>
-                                    <Text>$50</Text>
-                                </Box>
-                            </Stack>
+                           
+                              <Box marginLeft="15px">
+                                  <Text>{el.Username}</Text>
+                                  <Text>${el.money}</Text>
+                              </Box>
+                              </Flex>
+                                    </>
+                                })}
+                               
+                          
+                              
+                            
+
+                            </Box>
                             <br />
                         
                         <br />
                         <br />
-                        {/* <Stack direction="row" alignItems="center">
-                            <Button
-                                width="100px"
-                                border="1px solid black"
-                                borderRadius="10px"
-                                height="30px"
-                            >
-                                See all
-                            </Button>
-                            <Button
-                                width="200px"
-                                border="1px solid black"
-                                borderRadius="10px"
-                                marginLeft="20px"
-                                height="30px"
-                            >
-                                See Top Donations
-                            </Button>
-                        </Stack> */}
+                       
                     </Box>
                 </Box>
             </Box>
             <br />
             <br />
-            {/* <Box
-                width="100%"
-                margin="auto"
-                boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                padding="40px"
-                backgroundColor="#fbf8f6"
-            >
-                <Heading
-                    width="90%"
-                    display="flex"
-                    alignItems="center"
-                    marginLeft="30px"
-                >
-                    Your easy, powerful, and trusted home for help
-                </Heading>
-                <br />
-                <br />
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    marginBottom="40px"
-                    margin="auto"
-                    width="90%"
-                
-                >
-                    <Stack direction="row" alignItems="center" width="30%">
-                        <Image
-                            src="https://www.gofundme.com/_next/static/images/airplane-9305a2f0bb1f5e5f1bd6e1004710849c.svg"
-                            alt=""
-                        />
-                        <Box marginLeft="15px">
-                            <Text>
-                                <b>Easy</b>
-                            </Text>
-                            <Text>Donate quickly and easily.</Text>
-                        </Box>
-                    </Stack>
-                    <Stack direction="row" alignItems="center" width="30%">
-                        <Image
-                            src="https://www.gofundme.com/_next/static/images/phone-86989a47af72222c56e87fd35dbf162a.svg"
-                            alt=""
-                        />
-                        <Box marginLeft="15px">
-                            <Text>
-                                <b>Powerful</b>
-                            </Text>
-                            <Text>Send help right to the people and causes you care about.</Text>
-                        </Box>
-                    </Stack>
-                    <Stack direction="row" alignItems="center" width="30%">
-                        <Image
-                            src="https://www.gofundme.com/_next/static/images/guarantee-927e0717c5b84eeb69c8542fbb6adfb6.svg"
-                            alt=""
-                        />
-                        <Box marginLeft="15px">
-                            <Text>
-                                <b>Trusted</b>
-                            </Text>
-                            <Text>
-                                Your donation is protected by the{' '}
-                                <a style={{ textDecoration: 'underLine' }} href="#">
-                                    BeCharity Giving Guarantee
-                                </a>
-                                .
-                            </Text>
-                        </Box>
-                    </Stack>
-                </Stack>
-
-            </Box> */}
+           
        
-        
-     
-        <Box fontFamily={"Poppins"}   m={"100px"} mt={"50px"} style={{
-      backgroundImage: `url('https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-wrapbg1.jpg')`,
-      backgroundSize: "cover",
-   height:"450px",
-  backgroundAttachment:"fixed",
-      backgroundRepeat: "no-repeat"
-    }}>
-     
-      <Flex textAlign={"center"} justifyContent={"center"} alignItems={"center"}  h={"450px"} >
-        <Box>
-        <Text fontWeight={'500'} fontSize={"55"} lineHeight={"55px"} color={"white"} fontFamily={'DM Serif Display'}>We can't help everyone, <br />
-but everyone can help someone.</Text>
-<Box m={"auto"}>
-<Button m={"30px 10px"} borderRadius={"0"}  fontWeight={'300'} bg={"#df8c09"} color={"white"} colorScheme='black'>Donate Us</Button>
-      <Button m={"30px 10px"} borderRadius={"0"}  fontWeight={'300'} bg={"#79ab2f"} color={"white"} colorScheme='black'>Become a Voluntear</Button>
-      </Box>  </Box>
-     
-
-      </Flex>
-
-      </Box>
+    
       <Footer />
       </Box></>
     );

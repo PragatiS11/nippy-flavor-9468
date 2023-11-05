@@ -1,8 +1,10 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const UserApi = "http://localhost:8000/users";
-const DonationApi="http://localhost:8000/donation"
+const MainURL="http://localhost:8000"
+const UserApi = MainURL+"/users";
+const DonationApi=MainURL+"/donation";
+const PaymentURL=MainURL+"/payment";
 export const LoginRequest = (body) => {
   return axios.post(UserApi + "/login", body);
 };
@@ -52,4 +54,25 @@ export const DonationSingleRequest = (id) => {
 
 export const GetDataByUserId=(id)=>{
   return axios.get(UserApi+"/user-data-by-id/"+id);
+};
+
+//Payment Add
+export const PaymentAddRequest = (body) => {
+  return axios.post(PaymentURL + "/add", body);
+};
+
+//Catch Payment By Donation ID
+export const CatchPaymentByDonationIdRequest = (id) => {
+  return axios.get(PaymentURL+"/",{params:{donation_id:id}});
+};
+
+//Get Volunteers
+export const GetVolunteersRequest = () => {
+  return axios.get(UserApi+"/get-volunteers");
+};
+
+//Forget Password Link
+export const ForgetPassword = (obj) => {
+  Cookies.set("forget-password-email",obj.email,{ expires: 5 / (24 * 60) })
+  return axios.post(UserApi+"/forget-password",obj);
 };

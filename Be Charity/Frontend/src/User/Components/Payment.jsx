@@ -24,23 +24,32 @@ import { Tabs, TabList, TabPanels, Tab, Heading, TabPanel, TabIndicator, Text, S
 
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import { PaymentAddRequest } from '../Utilis/api';
 
 const Payment = () => {
+  const toast = useToast()
+  const data=useSelector((store)=>(store.DonationReducer))
+const userData=useSelector((store)=>(store.AuthReducer))
+
   const [show, setShow] = React.useState(false);
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState("");
 
   const cardInitialState = {
+
     cardNumber: '',
     cvv: '',
     expiryDate: '',
   };
 
   const upiInitialState = {
+  
     UPIid: '',
     UPIpassword: '',
   };
 
   const netbankInitialState = {
+  
     NBid: '',
     NBpassword: '',
   };
@@ -54,39 +63,115 @@ const Payment = () => {
   };
 
   let Navigate = useNavigate();
-  const toast = useToast();
 
-  function HandleSubmit(e) {
-    e.preventDefault();
-    console.log(e);
-    // toast({
-    //     title: 'Payment Successfully',
-    //     description: "You have brought our package.",
-    //     status: 'success',
-    //     duration: 3000,
-    //     isClosable: true,
-    //   })
 
-    // Navigate("/")
+  function HandleSubmit(obj) {
+
+    
+    PaymentAddRequest(obj).then(res=>{
+    toast({
+        title: 'Payment Successfully',
+        description: "You have brought our package.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+Navigate("/");
+})
   }
 
   const handleCreditCard = (e) => {
     e.preventDefault();
-    console.log('Card Number:', cardmeth.cardNumber);
-    console.log('Expiry Date:', cardmeth.expiryDate);
-    console.log('CVV:', cardmeth.cvv);
+    if(amount){
+      let t=+amount+data.singleProduct.current_funds;
+      let obj={
+        user_id:userData.userData._id,
+        money:amount,
+        donation_id:data.singleProduct._id,
+        Username:userData.userData.name,
+        Donation_name:data.singleProduct.title,
+        Time:Date(),
+        payment_type:"Credit Card",
+        payment_detail:cardmeth,
+        totalDonation:t,
+        email:userData.userData.email,
+           }
+      HandleSubmit(obj);
+    }else{
+      toast({
+        title: "Enter Donamtion Amount",
+        position: 'top',
+        description: "Join with us to help.",
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+ 
+   
   };
 
   const handleUpi = (e) => {
     e.preventDefault();
-    console.log('UPI ID:', upimeth.UPIid);
-    console.log('Password:', upimeth.UPIpassword);
+    if(amount){
+      let t=+amount+data.singleProduct.current_funds;
+      let obj={
+        user_id:userData.userData._id,
+        money:amount,
+        donation_id:data.singleProduct._id,
+        Username:userData.userData.name,
+        Donation_name:data.singleProduct.title,
+        Time:Date(),
+        payment_type:"UPI",
+        payment_detail:upimeth,
+        totalDonation:t,
+        email:userData.userData.email,
+      }
+      HandleSubmit(obj);
+    }else{
+      toast({
+        title: "Enter Donamtion Amount",
+        position: 'top',
+        description: "Join with us to help.",
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+
+
   };
 
   const handleNetBanking = (e) => {
     e.preventDefault();
-    console.log('User Name:', netmeth.NBid);
-    console.log('Password:', netmeth.NBpassword);
+    if(amount){
+      let t=+amount+data.singleProduct.current_funds;
+      
+      let obj={
+        user_id:userData.userData._id,
+        money:+amount,
+        donation_id:data.singleProduct._id,
+        Username:userData.userData.name,
+        Donation_name:data.singleProduct.title,
+        Time:Date(),
+        payment_type:"Net Banking",
+        payment_detail:netmeth,
+        totalDonation:t,
+        email:userData.userData.email,
+      }
+      HandleSubmit(obj);
+    }else{
+      toast({
+        title: "Enter Donamtion Amount",
+        position: 'top',
+        description: "Join with us to help.",
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+
+  
   };
 
   return (
@@ -95,7 +180,7 @@ const Payment = () => {
         <InputLeftElement pointerEvents="none" color="black" fontSize="1.2em" children="$" />
         <Input
           type="number"
-          onChange={(e) => setAmount(+e.target.value)}
+          onChange={(e) => setAmount(e.target.value)}
           value={amount}
           borderRadius="none"
           fontSize="20"
