@@ -26,13 +26,13 @@ const ProfileCardAdmin = () => {
         variant="outline"
       >
         <Image
-          m={"auto"}
+          m={"10px auto"}
           objectFit="cover"
           maxW={{
             base: "50%",
             sm: "30%",
           }}
-          src="https://www.getillustrations.com/photos/pack/3d-avatar-male_lg.png"
+          src={singleUser?.image}
           alt="Caffe Latte"
         />
 
@@ -53,10 +53,7 @@ const ProfileCardAdmin = () => {
                   <td> {`${singleUser?.city}` || "not read"} </td>
                 </tr>
 
-                <tr>
-                  <td>Phone:</td>
-                  {/* <td> {phone} </td> */}
-                </tr>
+              
               </Table>
             }
           </CardBody>

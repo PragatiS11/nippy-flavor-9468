@@ -21,6 +21,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Image,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -170,12 +171,14 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
       <Text
         display={{ base: "flex", md: "none" }}
         fontSize="2xl"
+        m={"auto"}
+        textAlign={"center"}
         fontFamily="monospace"
         fontWeight="bold"
       >
-        <img
-          src="https://i.ibb.co/BndWRTs/betterlife.png"
-          style={{ height: "100px" }}
+        <Image
+          src="https://i.ibb.co/0qSN97p/retina-ngo2.png"
+         w={"50%"}
           alt=""
         />
         {/*  */}
