@@ -13,9 +13,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductsData } from '../Redux/Donation/action';
 import { PiEyeBold, PiEyeClosedBold } from 'react-icons/pi';
 import Cookies from 'js-cookie';
+import { ResetPasswordRequest } from '../Utilis/api';
+import { useNavigate } from 'react-router-dom';
 const ResetPassword = () => {
   const dispatch = useDispatch();
 const toast=useToast();
+const Navigate=useNavigate()
 const [show,setShow]=useState(false)
   const [password,setPassword] = React.useState("");
   const [cp,setCp] = React.useState("");
@@ -23,11 +26,20 @@ const [show,setShow]=useState(false)
 function HandleSubmit(e){
 e.preventDefault();
 if(email){
-    if(password!==cp){
+    if(password.length==0 || cp.length==0){
+        toast({
+            title: "Your credentials should not be empty",
+            position: 'top',
+            description: "Enter your new password.",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
+    }else if(password!==cp){
         toast({
             title: "Check your credentials",
             position: 'top',
-            description: "Your credentials are not matching!",
+            description: "Your credentials are not matching !",
             status: 'error',
             duration: 2000,
             isClosable: true,
@@ -37,7 +49,7 @@ if(email){
             email,password
         }
         // console.log(obj)
-        ResetPassword(obj).then(res=>{
+        ResetPasswordRequest(obj).then(res=>{
             toast({
                 title: res.data.msg,
                 position: 'top',
@@ -46,10 +58,11 @@ if(email){
                 duration: 2000,
                 isClosable: true,
               })
+              Navigate("/")
         })
     }
 
-   
+ 
 }else{
     toast({
         title: "Your Link Has Been Expired!",
@@ -59,11 +72,12 @@ if(email){
         duration: 2000,
         isClosable: true,
       })
+      Navigate("/")
 }
 
 }
 
-  const handleClick = () => {
+const handleClick = () => {
     setShow(!show);
   };
 
