@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import {
   Card,
@@ -13,12 +13,31 @@ import {
 import { Box } from "@chakra-ui/react";
 import UserProfileContents from "../Components/UserProfileContents";
 import ProfileCardAdmin from "../Components/ProfileCardAdmin";
+import { GetDataByUserId } from "../../User/Utilis/api";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleUser } from "../../User/Redux/Admin/userAction";
 const UserByAdmin = ({ id }) => {
+  const dispatch = useDispatch();
+  const singleUSer = useSelector((store) => {
+    return store.userReducer.singleUser;
+  });
+  useEffect(() => {
+    GetDataByUserId(id)
+      .then((res) => {
+        console.log(res.data, "got single data");
+        dispatch(getSingleUser(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  useEffect(() => {
+    console.log(singleUSer, "okaaaayyy!!!");
+  }, [id]);
   return (
     <>
-      {/* /admin/singleUserID ,{id} */}
+      /admin/singleUserID ,{id}
       {/* single user page */}
-
       <Card>
         <CardHeader>
           {/* <Heading size="md">Donator Report</Heading> */}
@@ -38,7 +57,7 @@ const UserByAdmin = ({ id }) => {
               </Text>
             </Box> */}
             <Box>
-              <UserProfileContents />
+              <UserProfileContents id={id} />
             </Box>
           </Stack>
         </CardBody>

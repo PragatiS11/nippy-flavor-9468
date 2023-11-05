@@ -18,25 +18,36 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { deleteUser, getUsers } from "../../User/Redux/Admin/userAction";
+import {
+  AllUserDataRequest,
+  DonationRequest,
+  UserDataRequest,
+} from "../../User/Utilis/api";
 
 const AdminUsers = () => {
   const dispatch = useDispatch();
-  const userData = useSelector((store) => {
+  const users = useSelector((store) => {
     return store.userReducer.users;
   }, shallowEqual);
+  const userData = [];
 
   const isLoading = useSelector((store) => {
     return store.userReducer.isLoading;
   }, shallowEqual);
 
-  console.log(userData, "store data");
   const [params, setSearchParams] = useSearchParams();
-  console.log(params);
   const buttonSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
   const fontSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
 
   useEffect(() => {
-    dispatch(getUsers());
+    AllUserDataRequest()
+      .then((res) => {
+        console.log(res.data, "users");
+        dispatch(getUsers(res.data));
+      })
+      .catch((err) => {
+        console.log(err, "users");
+      });
   }, []);
   const handleDeleteUser = (id) => {
     dispatch(deleteUser(id, userData));
@@ -82,20 +93,20 @@ const AdminUsers = () => {
           <Tbody>
             {/*  */}
 
-            {userData?.map((ele) => (
-              <Tr key={ele.id}>
+            {users?.map((ele) => (
+              <Tr key={ele._id}>
                 <Td textAlign="center" fontSize={fontSize}>
-                  {ele.username}
+                  {ele.name}
                 </Td>
                 <Td textAlign="center" fontSize={fontSize}>
                   {ele.email}
                 </Td>
                 <Td textAlign="center" fontSize={fontSize}>
-                  {ele.orders.length}
+                  {/* {ele.orders.length} */}
                 </Td>
                 <Td textAlign="center" fontSize={fontSize}>
                   {/* volunteership */}
-                  Yes
+                  {ele.isVolunteers === true ? "Yes" : "No"}
                 </Td>
                 <Td>
                   <Flex justifyContent="center">
@@ -106,7 +117,7 @@ const AdminUsers = () => {
                       size={buttonSize}
                       onClick={() =>
                         setSearchParams({
-                          path: `/admin/users/singleUser/${ele.id}`,
+                          path: `/admin/users/singleUser/${ele._id}`,
                         })
                       }
                     >

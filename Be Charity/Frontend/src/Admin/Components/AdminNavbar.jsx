@@ -43,6 +43,8 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AdminSettings from "../Pages/AdminManage";
 import UserByAdmin from "../Pages/UserByAdmin";
 import AdminProfile from "../Pages/AdminProfile";
+import { DonationRequest } from "../../User/Utilis/api";
+import { useDispatch } from "react-redux";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, link: "/admin/dashboard/" },
@@ -242,14 +244,14 @@ const MobileNav = ({ setSearchParams, onOpen, ...rest }) => {
 };
 
 const AdminNavbar = () => {
+  const dispatch = useDispatch();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [Link, setLink] = useState("");
+
   const [params, setSearchParams] = useSearchParams("" || { path: "/admin" });
   console.log(params.get("path").split("/")[3], "i dont know bro");
 
-  useEffect(() => {
-    console.log(Link);
-  }, [Link]);
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent

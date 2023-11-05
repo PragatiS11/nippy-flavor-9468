@@ -1,7 +1,12 @@
 import { Card, CardBody, Heading, Image, Stack, Table } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ProfileCardAdmin = () => {
+  const singleUser = useSelector((store) => {
+    return store.userReducer.singleUser;
+  });
+  console.log(singleUser, "user profile - single page");
   return (
     <div>
       {/* ProfileCardAdmin */}
@@ -33,26 +38,27 @@ const ProfileCardAdmin = () => {
 
         <Stack m="auto">
           <CardBody bg={"#f5f5f5"} borderRadius={"20px"}>
-            <Heading size="md"></Heading>
-            <Table ml={"20px"} w={"100%"}>
-              <tr>
-                <td>Name :</td>
-                {/* <td> {`${username}` || "not read"} </td> */}
-              </tr>
-              <tr>
-                <td>E-mail :</td>
-                {/* <td> {`${email}` || "not read"} </td> */}
-              </tr>
-              <tr>
-                <td>CITY :</td>
-                {/* <td> {`${address?.city}` || "not read"} </td> */}
-              </tr>
+            {
+              <Table ml={"20px"} w={"100%"}>
+                <tr>
+                  <td>Name :</td>
+                  <td> {`${singleUser?.name}` || "not read"} </td>
+                </tr>
+                <tr>
+                  <td>E-mail :</td>
+                  <td> {`${singleUser?.email}` || "not read"} </td>
+                </tr>
+                <tr>
+                  <td>CITY :</td>
+                  <td> {`${singleUser?.city}` || "not read"} </td>
+                </tr>
 
-              <tr>
-                <td>Phone:</td>
-                {/* <td> {phone} </td> */}
-              </tr>
-            </Table>
+                <tr>
+                  <td>Phone:</td>
+                  {/* <td> {phone} </td> */}
+                </tr>
+              </Table>
+            }
           </CardBody>
         </Stack>
       </Card>

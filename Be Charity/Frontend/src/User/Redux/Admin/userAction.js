@@ -1,16 +1,16 @@
 import axios from "axios";
+import { UserDataRequest } from "../../Utilis/api";
 
-export const getUsers=()=>(dispatch)=>{
+export const getUsers=(data)=>(dispatch)=>{
    dispatch({type:"userRequest"})
-         axios.get("https://wood-heart-api.onrender.com/user")
-         .then(res=>{
-            console.log(res.data)
-            dispatch({type:"userSuccesssfull",payload:res.data})
-         })
-         .catch(err=>{
-            console.log(err);
-         })
+   console.log("data recieved ",data);
+  dispatch({type:"userSuccesssfull",payload:data})
 }
+
+export const getSingleUser=(data)=>(dispatch)=>{
+      dispatch({type:"singleUser_Success",payload:data})
+}
+
 
 export  const deleteUser=(id,allusers)=>(dispatch)=>{
     axios.delete(`https://wood-heart-api.onrender.com/user/${id}`)
@@ -25,3 +25,5 @@ export  const deleteUser=(id,allusers)=>(dispatch)=>{
       console.log(err);
     })
 }
+
+// donations from singleuser.

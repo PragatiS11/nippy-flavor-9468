@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -6,6 +6,9 @@ import { Chart } from "react-google-charts";
 
 const Dashboard = () => {
   const [date, setDate] = useState(new Date());
+
+  useEffect(() => {}, []);
+
   const [ChartGlobalData, setData] = useState([
     ["Category", "Goal", "Raised"],
     ["Medical Care", 1000, 400],
