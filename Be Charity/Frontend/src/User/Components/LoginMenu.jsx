@@ -29,8 +29,12 @@ import { SignupModal } from './SignUp';
 
 import { useNavigate } from 'react-router-dom';
 import { LoginRequest, LogoutRequest, UserDataRequest } from '../Utilis/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoginUser, LogoutUser, SingleUserData } from '../Redux/Auth/action';
 
 const LoginMenu = () => {
+  const dispatch=useDispatch()
+  const data=useSelector((store)=>(store.AuthReducer))
   const [SignOpen, setSignOpen] = useState(false);
 
   function SignClose() {
@@ -38,32 +42,33 @@ const LoginMenu = () => {
   }
 
   const [show, setShow] = React.useState(false)
+
   const toast = useToast()
+
   const handleClick = () => setShow(!show)
+
   const { onOpen, onClose, isOpen } = useDisclosure()
+
   const [username,setUsername]=useState("");
-const [name,setName]=useState("")
   const [password,setPassword]=useState("");
+
 let Navigate=useNavigate()
-
-
 
 function HandleLogout(){
 
-LogoutRequest().then(res=>{
-
   
+dispatch(LogoutUser)
   toast({
-    title: res.data.msg,
+    title: data?.logoutMessage,
     position: 'top',
     description: "You are logged out from our website",
     status: 'success',
     duration: 2000,
     isClosable: true,
   })
-})
-Cookies.set('User-token',"")
+
 onClose()
+
 }
 
   function HandleSubmit(e){
@@ -74,11 +79,9 @@ let obj={
   email:username,password
 }
 
-LoginRequest(obj).then(res=>{
-  Cookies.set('User-token', res.data.token)
- 
-  
-  if(res.data.msg=="User successfully logined."){
+if(obj.email && obj.password){
+dispatch(LoginUser(obj)).then((data)=>{
+  if(data=="User successfully logined."){
     toast({
       position: 'top',
       title: 'User Logined Succesfully',
@@ -87,28 +90,44 @@ LoginRequest(obj).then(res=>{
       duration: 2000,
       isClosable: true,
     })
-    UserDataRequest().then(res=>setName(res.data.name))
+   
+    setPassword("");
+setUsername("");
+onClose()
   }else{
     toast({
-      title: res.data.msg,
+      title: data,
       position: 'top',
       description: "Kindly check your credentials",
       status: 'error',
       duration: 2000,
       isClosable: true,
     })
+  }  })
+}else{
+  toast({
+    title: "Enter Your Credentials",
+    position: 'top',
+    description: "Don't keep it empty",
+    status: 'error',
+    duration: 2000,
+    isClosable: true,
+  })
+}
+
+
+
+
+
   }
-})
 
 
+useEffect(()=>{
+if(data.isAuth){
+  dispatch(SingleUserData)
+}
+},[])
 
-
-setPassword("");
-setUsername("");
-onClose()
-  }
-
-  let isAuth=Cookies.get("User-token") || false;
 
 
 
@@ -128,18 +147,32 @@ onClose()
             />
           </Button>
         </PopoverTrigger>
-       {isAuth?<PopoverContent w={"100%"}  border={"none"}  m="5px" p="10px" borderRadius={"0px"}>
+       {data?.isAuth?<PopoverContent w={"100%"}  border={"none"}  m="5px" p="10px" borderRadius={"0px"}>
           <PopoverArrow />
           <PopoverCloseButton />
           <PopoverHeader border="none" fontWeight={"bold"}  color="#79ab2f" 
-              fontSize="22">Welcome, <br /><Text textTransform={"capitalize"}>{name}</Text></PopoverHeader>
+              fontSize="22">Welcome, <br /><Text textTransform={"capitalize"}>{data?.userData?.name}</Text></PopoverHeader>
               
           <PopoverBody >
          
-      
+          <Button
+              colorScheme="white"
+              fontSize="16"
+              w="100%" textAlign={"center"}
+              m={"10px auto"}
+              fontWeight="400"
+              borderRadius={0}
+              bg="#79ab2f"
+              _hover={{ bgColor: "#df8c09" }}
+              letterSpacing={"1px"}
+              onClick={()=>Navigate("/user-profile")}
+            >
+              User Profile
+            </Button>
            
         
             <Button
+               borderRadius={0}
               colorScheme="white"
               fontSize="16"
               w="100%"
@@ -204,7 +237,17 @@ onClose()
               LOGIN
             </Button>
            
-            <Box m={"10px 35%"} mb={"0"} alignItems={"center"} justifyContent={"center"} w={"100%"}>
+            <Box m={"5px auto"} textAlign={"center"} mb={"0"} alignItems={"center"} justifyContent={"center"} w={"100%"}>
+            <Button 
+           color={"black"}
+              fontSize="sm"
+              variant={"link"}
+             onClick={()=>Navigate("/user-profile/reset-password")}
+              textDecoration="none"
+            >
+              Forget Password ?
+            </Button>
+            <br />
             <Button
            color={"black"}
               fontSize="sm"

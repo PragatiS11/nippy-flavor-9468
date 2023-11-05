@@ -1,8 +1,11 @@
+
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const UserApi = "http://localhost:8000/users";
-const DonationApi="http://localhost:8000/donation"
+const MainURL="http://localhost:8000"
+const UserApi = MainURL+"/users";
+const DonationApi=MainURL+"/donation";
+const PaymentURL=MainURL+"/payment";
 export const LoginRequest = (body) => {
   return axios.post(UserApi + "/login", body);
 };
@@ -36,8 +39,68 @@ export const UserDataRequest = () => {
   );
 };
 
-export const DonationRequest = () => {
+//All-data
+export const DonationRequest = (params) => {
+
     return axios.get(
-      DonationApi+"/"
+      DonationApi+"/",params
     );
   };
+
+//All Uesr Data
+
+export const AllUserDataRequest=()=>{
+  return axios.get(UserApi+"/all-user-data");
+}
+
+//Single-data
+export const DonationSingleRequest = (id) => {
+  return axios.get(
+    DonationApi+"/"+id
+  );
+};
+
+export const GetDataByUserId=(id)=>{
+  return axios.get(UserApi+"/user-data-by-id/"+id);
+};
+
+//Payment Add
+export const PaymentAddRequest = (body) => {
+  return axios.post(PaymentURL + "/add", body);
+};
+
+//Catch Payment By Donation ID
+export const CatchPaymentByDonationIdRequest = (id) => {
+  return axios.get(PaymentURL+"/",{params:{donation_id:id}});
+};
+
+//Catch Payment By User ID
+export const CatchPaymentByUserIdRequest = (id) => {
+  return axios.get(PaymentURL+"/",{params:{user_id:id}});
+};
+
+
+//Get Volunteers
+export const GetVolunteersRequest = () => {
+  return axios.get(UserApi+"/get-volunteers");
+};
+
+//Forget Password Link
+export const ForgetPassword = (obj) => {
+  Cookies.set("forget-password-email", obj.email, { expires: 5 / (24 * 60) });
+  return  axios.post(UserApi + "/forget-password", obj);     
+};
+
+//Reset Password Link
+export const ResetPasswordRequest = (obj) => {
+  return  axios.patch(UserApi + "/reset-password", obj);     
+};
+
+
+
+
+
+
+
+
+

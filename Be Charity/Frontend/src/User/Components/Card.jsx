@@ -28,11 +28,12 @@ import { BiSelectMultiple, BiSolidDonateHeart } from 'react-icons/bi';
 import { MdMergeType } from 'react-icons/md';
 
 import { BsFillBox2HeartFill } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
-const RepositoryCard = ({title,description,cover,category,stargazers_count,donators}) => {
+const RepositoryCard = ({id,title,description,cover,category,stargazers_count,donators}) => {
 
   
-
+let Navigate=useNavigate();
  
 
   return (
@@ -78,8 +79,6 @@ const RepositoryCard = ({title,description,cover,category,stargazers_count,donat
             <Text   fontFamily={"DM Serif Display"}
                   fontSize="25"
                   m={"10px 0"}
-               
-             
                noOfLines={1}
                   fontWeight="600"
                  
@@ -138,7 +137,7 @@ const RepositoryCard = ({title,description,cover,category,stargazers_count,donat
                 borderRadius={"0"}
                 fontWeight={"300"}
                 bg={"#79ab2f"}
-               
+               onClick={()=>Navigate(`/donate-us/${id}`)}
                 _hover={{ bgColor: "#f7b70d" }}
                 color={"white"}
                 colorScheme="black"
