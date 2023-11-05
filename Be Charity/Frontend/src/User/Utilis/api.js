@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -45,7 +46,13 @@ export const DonationRequest = () => {
     );
   };
 
-  //Single-data
+//All Uesr Data
+
+export const AllUserDataRequest=()=>{
+  return axios.get(UserApi+"/all-user-data");
+}
+
+//Single-data
 export const DonationSingleRequest = (id) => {
   return axios.get(
     DonationApi+"/"+id
@@ -73,6 +80,20 @@ export const GetVolunteersRequest = () => {
 
 //Forget Password Link
 export const ForgetPassword = (obj) => {
-  Cookies.set("forget-password-email",obj.email,{ expires: 5 / (24 * 60) })
-  return axios.post(UserApi+"/forget-password",obj);
+  Cookies.set("forget-password-email", obj.email, { expires: 5 / (24 * 60) });
+  return  axios.post(UserApi + "/forget-password", obj);     
 };
+
+//Reset Password Link
+export const ResetPassword = (obj) => {
+  return  axios.patch(UserApi + "/reset-password", obj);     
+};
+
+
+
+
+
+
+
+
+

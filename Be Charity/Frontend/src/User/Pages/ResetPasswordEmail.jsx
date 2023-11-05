@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { GrSearch } from 'react-icons/gr';
-import { Image, Input, InputRightElement, Select, Stack } from '@chakra-ui/react'
+import { Image, Input, InputRightElement, Select, Stack, useToast } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar"
 import BGImage from "../Assests/ngo2-sectionbg2.png"
 import { Box, Button, Flex, Heading, Link, Text,  InputGroup, InputLeftElement  } from '@chakra-ui/react'
@@ -15,13 +15,35 @@ import { PiEyeBold, PiEyeClosedBold } from 'react-icons/pi';
 import { MdEmail } from 'react-icons/md';
 import { ForgetPassword } from '../Utilis/api';
 const ResetPasswordEmail= () => {
+    const toast=useToast()
   const dispatch = useDispatch();
   
   const [email,setEmai] = React.useState("");
  
 function HandleSubmit(e){
     e.preventDefault();
-    ForgetPassword({email});
+    ForgetPassword({email}).then(res=>{
+console.log(res.data)
+if(res.data.msg=="User Account is not exist."){
+    toast({
+        title: "User Account is not exist.",
+        position: 'top',
+        description: "Kindly check your email again",
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+}else{
+    toast({
+        title: res.data.msg,
+        position: 'top',
+        description: "Reset password with the help of that",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+}
+    });
 }
  
 
