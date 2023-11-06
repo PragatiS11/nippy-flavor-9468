@@ -4,9 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run:![Screenshot 2023-11-06 125239](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/c19e5f06-c75d-4803-b06e-6d641894c30f)
+
 
 ### `npm start`
+
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
