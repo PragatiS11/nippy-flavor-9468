@@ -51,12 +51,14 @@ const NumberChange = () => {
           </Text>
           <Text color={"#666666"} fontWeight={'300'} fontSize={"15px"} mt={"15px"}>
           Aliquam ac dui vel dui vulputate consectetur. Mauris accumsan, massa non consectetur condimentum diam.       </Text>
-          <SimpleGrid  columns={{ base: 2, sm: 2, md: 2 }} spacing={0} mt={10} mb={4} w={"90%"}>
+          <SimpleGrid  columns={{ base: 2, sm: 2, md: 2 }} spacing={0} mt={10} mb={4} w={["100%","90%"]}>
             {statData.map((data) => (
-              <Box fontFamily={'DM Serif Display'} key={data.id} p={{ base: 2, sm: 4 }} style={{
+              <Box fontFamily={'DM Serif Display'} key={data.id}
+              height={["250px","200px"]}
+              p={{ base: 2, sm: 4 }} style={{
                 backgroundImage: `url('${data.link}')`,
                 backgroundSize: "25%",
-             height:"200px",
+           
                 backgroundRepeat: "no-repeat"
               }}>
    

@@ -5,14 +5,14 @@ const AboutCenter = () => {
   return (
     <>
       <Box w={"75%"} m={"auto"}>
-        <Flex m={"50px"}>
-          <Box w={"60%"}>
+        <Flex m={["10px","50px"]} direction={["column","row"]}>
+          <Box  w={["100%","60%"]}>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-pic1.jpg"></Image>
           </Box>
-          <Box m={"20px"} w={"50%"}>
+          <Box m={["5px","20px"]} w={["100%","50%"]}>
             <Text
               fontWeight={"500"}
-              fontSize={"50"}
+              fontSize={[30,"50"]}
               lineHeight={"55px"}
               fontFamily={"DM Serif Display"}
             >
@@ -34,11 +34,11 @@ const AboutCenter = () => {
             </Text>
           </Box>
         </Flex>
-        <Flex mt={"100px"}>
-          <Box m={"20px"} w={"50%"}>
+        <Flex mt={"100px"}  direction={["column-reverse","row"]}>
+          <Box m={["5px","20px"]} w={["100%","50%"]}>
             <Text
               fontWeight={"500"}
-              fontSize={"50"}
+              fontSize={[30,"50"]}
               lineHeight={"55px"}
               fontFamily={"DM Serif Display"}
             >
@@ -59,18 +59,18 @@ const AboutCenter = () => {
               Fusce interdum justo quis libero ultricies laoreet.
             </Text>
           </Box>
-          <Box w={"60%"}>
+          <Box w={["100%","60%"]}>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-pic2.jpg"></Image>
           </Box>
         </Flex>
-        <Flex mt={"100px"}>
-          <Box w={"60%"}>
+        <Flex mt={"100px"} direction={["column","row"]}>
+          <Box w={["100%","60%"]}>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-pic3.jpg"></Image>
           </Box>
-          <Box m={"20px"} w={"50%"}>
+          <Box m={"20px"} w={["100%","50%"]}>
             <Text
               fontWeight={"500"}
-              fontSize={"50"}
+              fontSize={[30,"50"]}
               lineHeight={"55px"}
               fontFamily={"DM Serif Display"}
             >

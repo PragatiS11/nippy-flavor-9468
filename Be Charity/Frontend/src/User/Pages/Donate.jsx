@@ -81,7 +81,7 @@ const Donate = () => {
         backgroundRepeat: "no-repeat",
       }}>
         <Navbar />
-        <Flex justifyContent={"center"} alignItems={"flex-end"} m={"auto"} h={"100px"} >
+        <Flex justifyContent={"center"}  alignItems={"flex-end"} m={"auto"} h={"100px"} >
           <Box>
             <Text fontWeight={'500'} fontSize={["30", "45"]} lineHeight={"60px"} textAlign={"center"} fontFamily={'DM Serif Display'}>Search fundraisers on BeCharity</Text>
           </Box>
@@ -89,14 +89,14 @@ const Donate = () => {
 
         </Flex>
         <Flex alignItems={"center"} m={"auto"} >
-          <Flex m={"20px auto"}>
+          <Flex m={"20px auto"}  flexDirection={["column","row"]}>
             <InputGroup >
               <InputLeftElement pointerEvents='none'>
                 <FaSearch />
               </InputLeftElement>
-              <Input placeholder='Search Here...' _focus={{ boxShadow: "none" }} onChange={(e) => setSearch(e.target.value)} value={search} _hover={{ border: "2px solid black", boxShadow: "none" }} borderRadius={"0px"} border={"1px solid black"} variant='outline' type='search' w={["400px", "400px", "550px"]} />
+              <Input placeholder='Search Here...' _focus={{ boxShadow: "none" }} onChange={(e) => setSearch(e.target.value)} value={search} _hover={{ border: "2px solid black", boxShadow: "none" }} borderRadius={"0px"} border={"1px solid black"} variant='outline' type='search' w={["200px", "400px", "550px"]} />
             </InputGroup>
-            <Select _hover={{ border: "2px solid black", boxShadow: "none" }} variant={"outline"} borderRadius={"0px"} border={"1px solid black"} m={"auto 10px"} placeholder="Category" onChange={HandleCategory}>
+            <Select _hover={{ border: "2px solid black", boxShadow: "none" }} variant={"outline"} borderRadius={"0px"} border={"1px solid black"} m={["10px auto","auto 10px"]} placeholder="Category" w={["200px","200px"]} onChange={HandleCategory}>
               <option value="Education">Education</option>
               <option value="Medical">Medical</option>
               <option value="Food">Food</option>

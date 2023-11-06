@@ -18,7 +18,7 @@ const About = () => {
       <Navbar />
       <Flex  alignItems={"center"} m={"auto"} h={"350px"} w={"65%"}>
         <Box>
-        <Text fontWeight={'500'} fontSize={"55"} lineHeight={"55px"}  fontFamily={'DM Serif Display'}>Curabitur sed iaculis dolor, non congue ligula. Maecenas imperdiet ante eget hendrerit posuere.</Text>
+        <Text fontWeight={'500'} fontSize={[32,"55"]} lineHeight={"55px"}  fontFamily={'DM Serif Display'}>Curabitur sed iaculis dolor, non congue ligula. Maecenas imperdiet ante eget hendrerit posuere.</Text>
         </Box>
       </Flex>
       <AboutCenter />

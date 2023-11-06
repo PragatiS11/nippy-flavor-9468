@@ -16,10 +16,10 @@ const HomePage = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        h={["300px", "720px"]}
+        h={["500px", "720px"]}
       >
         <Navbar />
-        <Box mt={"150px"} ml={"120px"} w={["100px", "500px"]}>
+        <Box mt={"150px"} ml={["0px","120px"]} w={["300px", "500px"]}>
           <Text
             fontWeight={"500"}
             fontSize={["30", "44"]}

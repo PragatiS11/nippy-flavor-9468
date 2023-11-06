@@ -73,21 +73,24 @@ dispatch(getSingleProductData(id));
               
             
             
-            <Box display="flex"  w={"90%"} m={"auto"}  >
-                <Box width="100%" marginLeft="90px">
+            <Box display="flex" flexDirection={["column","row"]}  w={["100%","90%"]} m={"auto"}  >
+                <Box width="100%" marginLeft={["5px","90px"]}>
                     <Box width="100%">
                         <Image
                             src={el.image}
                             alt=""
-                            width="100%"
+                            width={["90%","100%"]}
                    
                         />
                         <br />
                      
-                        <Stack direction="row" alignItems="center">
+                        <Stack direction={["column","row"]} alignItems="center">
                             <Text color={"#666666"}  letterSpacing={"0.2px"}   fontWeight={"400"}>Organized By {organizer?.name}</Text><RxDotFilled />
-                            <Icon as={IoPricetagsOutline} />
+                          
+                           <Icon as={IoPricetagsOutline} />
                             <Text textTransform={"capitalize"} color={"#666666"} letterSpacing={"0.2px"} fontWeight={"400"} m={"5•x 0"} size="md">{el?.category}</Text>
+                           
+                            
                         </Stack>
                         <Divider  borderColor={"#c8c8c8"} mt={"20px"}/>
                         <br />
@@ -193,10 +196,10 @@ If you're not in a place to donate, you can still help in a huge way by sharing 
                     </Box>
                 </Box> 
                 <Box 
-                    marginLeft="50px"
-                    marginRight="90px"
+                    marginLeft={["10px","50px"]}
+                    marginRight={["10px","60px"]}
                     // boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                    height="600px"
+                    height={["700px","600px"]}
                 >
                     <Box   marginLeft="30px" marginRight="30px" marginTop="30px">
                         <Text >

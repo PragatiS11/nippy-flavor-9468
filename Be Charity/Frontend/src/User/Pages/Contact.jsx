@@ -17,17 +17,18 @@ const Contact = () => {
   return (
     <>
       <Box color={"black"}
+      height={["950px","720px"]}
         fontFamily={"Poppins"}
         style={{
           backgroundImage: `url('${BGImage}')`,
           backgroundSize: "cover",
-          height: "720px",
+       
           backgroundPosition:"center",
           backgroundRepeat: "no-repeat",
         }}
       >
         <Navbar />
-        <Flex alignItems={"center"} m={"auto"} h={"350px"} w={"68%"}>
+        <Flex alignItems={"center"} m={"auto"} h={["350px"]} w={"68%"}>
           <Box>
             <Text
               fontWeight={"500"}
@@ -41,8 +42,8 @@ const Contact = () => {
             </Text>
           </Box>
         </Flex>
-        <Flex w={"70%"} m={"20px auto"} justifyContent={"space-between"}>
-          <Stack w={"23%"} borderRadius={"20px"} p={"20px"}>
+        <Flex w={"70%"} m={"20px auto"} flexDirection={["column","row"]} justifyContent={"space-between"}>
+          <Stack w={["100%","23%"]} borderRadius={"20px"} p={"20px"}>
             <Box>
               <Text
                 fontWeight={"500"}
@@ -65,7 +66,7 @@ const Contact = () => {
               </Text>
             </Box>
           </Stack>
-          <Stack w={"23%"} borderRadius={"20px"} p={"20px"}>
+          <Stack w={["100%","23%"]} borderRadius={"20px"} p={"20px"}>
             <Box>
               <Text
                 fontWeight={"500"}
@@ -90,7 +91,7 @@ const Contact = () => {
               <Text>+61 (0) 383 766 284</Text>
             </Box>
           </Stack>
-          <Stack w={"23%"} borderRadius={"20px"} p={"20px"}>
+          <Stack w={["100%","23%"]} borderRadius={"20px"} p={"20px"}>
             <Box>
               <Text
                 fontWeight={"500"}

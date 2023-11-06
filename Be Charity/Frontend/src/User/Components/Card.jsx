@@ -30,7 +30,7 @@ import { MdMergeType } from 'react-icons/md';
 import { BsFillBox2HeartFill } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 
-const RepositoryCard = ({id,title,description,cover,category,stargazers_count,donators}) => {
+const RepositoryCard = ({id,title,description,cover,category,stargazers_count,donators,current_funds}) => {
 
   
 let Navigate=useNavigate();
@@ -90,7 +90,7 @@ let Navigate=useNavigate();
                 <Box>
                 <Icon as={FaDonate} boxSize="0.9em" mt="1px" />
               <Box as="span" ml="2" fontSize="sm">
-                {stargazers_count}
+                ${stargazers_count}
               </Box>
             
                 </Box>  
@@ -104,11 +104,11 @@ let Navigate=useNavigate();
               </Box>
                 </Box>
                 </Tooltip>
-                <Tooltip label={"Category"}>
+                <Tooltip label={"Fund Raised"}>
                 <Box>
                 <Icon as={BiSolidDonateHeart} boxSize="0.9em" mt="1px" />
               <Box as="span" ml="2" fontSize="sm">
-              {donators.length} Donators
+              ${current_funds} Raised
               </Box>
                 </Box>
                 </Tooltip>

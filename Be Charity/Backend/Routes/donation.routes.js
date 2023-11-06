@@ -1,14 +1,15 @@
 const express=require("express");
 const { DonationModel } = require("../Model/donation.model");
+const { auth } = require("../Middleware/auth.middleware");
 // const { auth } = require("../Middleware/auth.middleware");
 const DonationRouter=express.Router();
 // DonationRouter.use(auth)
 //Post the Post
-DonationRouter.post("/add",async(req,res)=>{
+DonationRouter.post("/add",auth,async(req,res)=>{
     try {
      const Post=new DonationModel(req.body);
      await Post.save();
-     res.status(200).send({msg:"Post is added.",Added_Post:req.body});
+     res.status(200).send({msg:"Post is added.",AddedDonation:req.body});
     } catch (error) {
      res.status(400).send({msg:error})
     }
@@ -18,18 +19,24 @@ DonationRouter.post("/add",async(req,res)=>{
 
 //Get the Post With Queries
 DonationRouter.get("/",async(req,res)=>{
-  
+
     try {
       let query={}
-
+    
       if(req.query.category){
 query.category=req.query.category;
       }
+  
+      if(req.query.organizer){
+         query.organizer=req.query.organizer;
+               }else if(req.query.organizer==""){
+                  query.organizer="";  
+               }
 
       if (req.query.q) {
           query.title = { $regex: req.query.q, $options: 'i' }; 
       }
-  
+   
    const Donations=await DonationModel.find(query);
 
      res.status(200).send(Donations);
@@ -50,11 +57,11 @@ query.category=req.query.category;
 })
 
 //Patch the post
-DonationRouter.patch("/update/:id",async(req,res)=>{
+DonationRouter.patch("/patch/:id",async(req,res)=>{
     let {id}=req.params;
     try {
      const Post=await DonationModel.findByIdAndUpdate({_id:id},req.body);
-     res.status(200).send({msg:"Post is updated."});
+     res.status(200).send({msg:"Donation is updated."});
     } catch (error) {
      res.status(400).send({msg:error})
     }
@@ -65,7 +72,7 @@ DonationRouter.delete("/delete/:id",async(req,res)=>{
     let {id}=req.params;
     try {
      const Post=await DonationModel.findByIdAndDelete({_id:id});
-     res.status(200).send({msg:"Post is deleted."});
+     res.status(200).send({msg:"Donation is deleted."});
     } catch (error) {
      res.status(400).send({msg:error})
     }
