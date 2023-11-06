@@ -73,6 +73,7 @@ const userData=useSelector((store)=>(store.AuthReducer))
         title: 'Payment Successfully',
         description: "You have brought our package.",
         status: 'success',
+        position: 'top',
         duration: 3000,
         isClosable: true,
       })

@@ -54,7 +54,7 @@ UserRouter.post("/forget-password",async(req,res)=>{
           
               We received a request to reset your password for your account. To reset your password, please click on the following link:
           
-              Password Reset Link: http://localhost:3000/user-profile/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU0MzljNzNkODEwZjU2NmIyZTQwNGZjIiwidXNlcm5hbWUiOiJTaHViaGFtIiwiaWF0IjoxNjk4OTMyMjEzfQ.1QDUsrLJZDFuXT5IamFfvEa0LH7FY0q_XknJpEw0KkQ
+              Password Reset Link [Expires In 5 Min]: http://localhost:3000/user-profile/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU0MzljNzNkODEwZjU2NmIyZTQwNGZjIiwidXNlcm5hbWUiOiJTaHViaGFtIiwiaWF0IjoxNjk4OTMyMjEzfQ.1QDUsrLJZDFuXT5IamFfvEa0LH7FY0q_XknJpEw0KkQ
           
               If you did not request a password reset, please ignore this email. Your account is secure, and no changes have been made.
           
@@ -179,6 +179,18 @@ UserRouter.get("/user-data-by-id/:id",async(req,res)=>{
     }
 })
 
+
+UserRouter.patch("/patch/:id", async(req, res) => {
+    let {id}=req.params;
+    try {
+     
+        await UserModel.findByIdAndUpdate({_id:id},req.body)
+        res.status(200).send({msg:"User is updated."});
+    } catch (error) {
+        res.status(400).send({msg:err})
+    }
+   
+  });
 
 module.exports={
     UserRouter

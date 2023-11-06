@@ -36,7 +36,7 @@ const UserByAdmin = ({ id }) => {
   }, [id]);
   return (
     <>
-      /admin/singleUserID ,{id}
+     
       {/* single user page */}
       <Card>
         <CardHeader>

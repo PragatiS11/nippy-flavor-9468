@@ -21,6 +21,7 @@ const OfflineData = ({data}) => {
         category={el.category}
           donators={el.donators}
             stargazers_count={el.goal}
+            current_funds={el.current_funds}
           />
         ))}
       </SimpleGrid>

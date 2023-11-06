@@ -41,7 +41,7 @@ export const UserDataRequest = () => {
 
 //All-data
 export const DonationRequest = (params) => {
-
+console.log(params)
     return axios.get(
       DonationApi+"/",params
     );
@@ -53,6 +53,32 @@ export const AllUserDataRequest=()=>{
   return axios.get(UserApi+"/all-user-data");
 }
 
+//Add Donation Data
+export const AddDonationRequest = (obj) => {
+  let token = Cookies.get("User-token");
+  return axios.post(
+    DonationApi+"/add", obj, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+//Patch Donation Data
+export const PatchDonationRequest = (id ,obj) => {
+ 
+  return axios.patch(
+    DonationApi+"/patch/"+id,obj
+  );
+}
+
+//Delete Donation Data
+export const DeleteDonationRequest = (id) => {
+  return axios.delete(
+    DonationApi+"/delete/"+id
+  );
+};
 //Single-data
 export const DonationSingleRequest = (id) => {
   return axios.get(
@@ -95,6 +121,12 @@ export const ForgetPassword = (obj) => {
 export const ResetPasswordRequest = (obj) => {
   return  axios.patch(UserApi + "/reset-password", obj);     
 };
+
+//Patch the user
+export const PatchUserRequest = (id,obj) => {
+  return  axios.patch(UserApi+"/patch/"+id, obj);     
+};
+
 
 
 

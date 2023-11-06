@@ -51,11 +51,10 @@ const LinkItems = [
   { name: "Dashboard", icon: FiHome, link: "/admin/dashboard/" },
   { name: "Users", icon: FiTrendingUp, link: "/admin/users/" },
   {
-    name: "Categories",
+    name: "Donations",
     icon: FiCompass,
     link: "/admin/category/",
-  },
-  { name: "Events", icon: FiStar, link: "/admin/events/" },
+  }
   // { name: "Manage", icon: FiSettings, link: "/admin/settings/" },
 ];
 

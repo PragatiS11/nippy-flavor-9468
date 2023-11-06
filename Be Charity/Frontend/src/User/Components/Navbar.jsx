@@ -23,11 +23,33 @@ import {
 import { FaSearch} from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
-
+import { useSelector } from 'react-redux';
+const NAV_ITEMS = [
+  {
+    label: 'Home',
+ href:"/"
+  },
+  {
+    label: 'About Us',
+    href:"/about-us"
+  },
+  {
+    label: 'Donate Us',
+    href:"/donate-us"
+  },
+  {
+    label: 'Volunteers',
+    href:"/volunteers"
+  },
+  {
+    label: 'Contact',
+    href:"/contact"
+  }
+];
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure()
-
+  const data=useSelector((store)=>(store.AuthReducer))
 const Navigate=useNavigate();
   return (
     <Box  id='nav'>
@@ -93,6 +115,58 @@ return <>
     </Stack>
 </>
 })}
+{data?.userData?.isVolunteers && <Stack spacing={4} >
+      <Box
+        py={2}
+        as="a"
+        href="/volunteers/donation"
+        justifyContent="space-between"
+        alignItems="center"
+        _hover={{
+          textDecoration: 'none',
+        }}>
+          <Box display={"flex"} alignItems={"center"}  w={"100%"}  >
+          
+        
+            <Text fontWeight={400}  ml={"20px"} color={linkColor} 
+             _hover={{
+                      color: linkHoverColor,
+                    }}
+                  
+                    >
+          Fundraising
+        </Text>
+         
+          </Box>
+       
+      </Box>
+    </Stack>}
+  {data?.userData?.isAdmin && <Stack spacing={4} >
+      <Box
+        py={2}
+        as="a"
+        href="/admin"
+        justifyContent="space-between"
+        alignItems="center"
+        _hover={{
+          textDecoration: 'none',
+        }}>
+          <Box display={"flex"} alignItems={"center"}  w={"100%"}  >
+          
+        
+            <Text fontWeight={400}  ml={"20px"} color={linkColor} 
+             _hover={{
+                      color: linkHoverColor,
+                    }}
+                  
+                    >
+          Admin
+        </Text>
+         
+          </Box>
+       
+      </Box>
+    </Stack>}
 </Flex>
           
         </Flex>
@@ -141,11 +215,64 @@ return <>
 
 
 const MobileNav = () => {
+  const data=useSelector((store)=>(store.AuthReducer))
   return (
     <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
+  {data?.userData?.isAVolunteers && <Stack spacing={4} >
+      <Box
+        py={2}
+        as="a"
+        href="/volunteer/donation"
+        justifyContent="space-between"
+        alignItems="center"
+        _hover={{
+          textDecoration: 'none',
+        }}>
+          <Box display={"flex"} alignItems={"center"}  w={"100%"}  >
+          
+        
+            <Text fontWeight={400}  ml={"20px"} color={linkColor} 
+             _hover={{
+                      color: linkHoverColor,
+                    }}
+                  
+                    >
+         Fundraising
+        </Text>
+         
+          </Box>
+       
+      </Box>
+    </Stack>}
+  {data?.userData?.isAdmin && <Stack spacing={4} >
+      <Box
+        py={2}
+        as="a"
+        href="/admin"
+        justifyContent="space-between"
+        alignItems="center"
+        _hover={{
+          textDecoration: 'none',
+        }}>
+          <Box display={"flex"} alignItems={"center"}  w={"100%"}  >
+          
+        
+            <Text fontWeight={400}  ml={"20px"} color={linkColor} 
+             _hover={{
+                      color: linkHoverColor,
+                    }}
+                  
+                    >
+          Admin
+        </Text>
+         
+          </Box>
+       
+      </Box>
+    </Stack>}
     </Stack>
   )
 }
@@ -192,25 +319,3 @@ const MobileNavItem = ({ label, href,src }) => {
 
 
 
-const NAV_ITEMS = [
-  {
-    label: 'Home',
- href:"/"
-  },
-  {
-    label: 'About Us',
-    href:"/about-us"
-  },
-  {
-    label: 'Donate Us',
-    href:"/donate-us"
-  },
-  {
-    label: 'Volunteers',
-    href:"/volunteers"
-  },
-  {
-    label: 'Contact',
-    href:"/contact"
-  }
-];

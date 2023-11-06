@@ -45,6 +45,7 @@ isError:false
           ...state,
           isAuth:false,
           loginMessage:"",
+          userData:{},
           logoutMessage:payload,
 isLoading:false,
 isError:false,

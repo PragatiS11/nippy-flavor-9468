@@ -3,6 +3,7 @@ import {
   Flex,
   HStack,
   Image,
+  SimpleGrid,
   Stack,
   Text,
   VStack,
@@ -12,12 +13,12 @@ import React from "react";
 const CategoryComponent = () => {
   return (
     <>
-      <Flex w={"80%"} m={"120px auto"} justifyContent={"space-between"}>
+      <SimpleGrid columns={[2,3,4]} w={"80%"} m={"120px auto"}justifyContent={"space-between"}>
         <Stack
-          w={"23%"}
+          w={"100%"}
           _hover={{ bg: "#faf8f6" }}
           borderRadius={"20px"}
-          p={"20px"}
+          p={["10px","20px"]}
         >
           <Box>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-icon1.png"></Image>
@@ -45,10 +46,10 @@ const CategoryComponent = () => {
           </Box>
         </Stack>
         <Stack
-          w={"23%"}
-          _hover={{ bg: "#faf8f6" }}
-          borderRadius={"20px"}
-          p={"20px"}
+         w={"100%"}
+         _hover={{ bg: "#faf8f6" }}
+         borderRadius={"20px"}
+         p={["10px","20px"]}
         >
           <Box>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-icon2.png"></Image>
@@ -76,10 +77,10 @@ const CategoryComponent = () => {
           </Box>
         </Stack>
         <Stack
-          w={"23%"}
+          w={"100%"}
           _hover={{ bg: "#faf8f6" }}
           borderRadius={"20px"}
-          p={"20px"}
+          p={["10px","20px"]}
         >
           <Box>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-icon3.png"></Image>
@@ -107,10 +108,10 @@ const CategoryComponent = () => {
           </Box>
         </Stack>
         <Stack
-          w={"23%"}
-          _hover={{ bg: "#faf8f6" }}
-          borderRadius={"20px"}
-          p={"20px"}
+         w={"100%"}
+         _hover={{ bg: "#faf8f6" }}
+         borderRadius={"20px"}
+         p={["10px","20px"]}
         >
           <Box>
             <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-about-icon4.png"></Image>
@@ -137,7 +138,7 @@ const CategoryComponent = () => {
             </Text>
           </Box>
         </Stack>
-      </Flex>
+      </SimpleGrid>
     </>
   );
 };

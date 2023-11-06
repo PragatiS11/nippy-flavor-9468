@@ -4,6 +4,7 @@ const auth=async(req,res,next)=>{
    
     try {
         const token=req.headers.authorization?.split(" ")[1];
+
         if(token){
             const Blacklist=await BlacklistModel.findOne({token});
             if(Blacklist){
@@ -12,7 +13,8 @@ const auth=async(req,res,next)=>{
                 let decoded = jwt.verify(token, 'masai');
                 if(decoded){
                     req.body.user_id=decoded.user_id;
-                    req.body.username=decoded.username;
+                    req.body.organizer=decoded.user_id;
+        
                     next();
                 }else{
                     return res.status(200).send({msg:'UnAuthorized'})

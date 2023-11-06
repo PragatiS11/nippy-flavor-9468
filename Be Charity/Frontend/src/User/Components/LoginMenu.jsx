@@ -139,7 +139,7 @@ if(data.isAuth){
         <PopoverTrigger>
           <Button as="div" border="none" variant="link">
             <Image
-              src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png"
+              src={data.userData.image || "https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oggg1boogjsy98ttnvnd.png"}
               w={['50%', '100%', '100%']}
               m={['auto', 'auto']}
               alt="User Icon"

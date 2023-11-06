@@ -35,7 +35,7 @@ PaymentRouter.post("/add",async(req,res)=>{
     
         Donation Details:
         - Donation Name: ${req.body.Donation_name}
-        - Amount: ${req.body.money}
+        - Amount: $${req.body.money}
         - Payment Type: ${req.body.payment_type}
         - Date: ${req.body.Time}
     

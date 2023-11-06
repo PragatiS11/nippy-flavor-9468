@@ -15,8 +15,15 @@ import Footer from '../Components/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsData } from '../Redux/Donation/action';
 import { CatchPaymentByUserIdRequest } from '../Utilis/api';
+import { EditModel } from '../Components/EditModel';
 
 const UserProfile = () => {
+
+    const [SignOpen, setSignOpen] = useState(false);
+
+    function SignClose() {
+      setSignOpen(!SignOpen);
+    }
   const dispatch = useDispatch();
 
  const data=useSelector((store)=>(store.AuthReducer.userData))
@@ -49,15 +56,34 @@ CatchPaymentByUserIdRequest(data?._id).then(res=>{
         </Flex>
 
         <Flex alignItems={"center"} m={"auto"} w={"80%"} justifyContent="space-evenly" mt={"50px"}>
-          <Flex alignItems={"center"} justifyContent={"space-evenly"} margin={"auto"}>
+          <Flex direction={"column"} alignItems={"center"} justifyContent={"center"}  margin={"auto"}>
             <Box>
-              <Image w={"40%"} src={data?.image}></Image>
+              <Image w={"50%"} m={"auto"} src={data?.image}></Image>
    
             </Box>
-            <Box  mt={"30"} marginLeft={"-150px"} fontWeight={"600"}> 
-              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} letterSpacing={"0.5px"} fontSize={"20"}>Name : {data?.name}</Text>
+            <Box m={"auto"}  mt={"30"}  fontWeight={"600"}> 
+              <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"} letterSpacing={"0.5px"} fontSize={"20"}>Name : {data?.name} {data?.isVolunteers?"[ VOLUNTEER ]":""}</Text>
               <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"}  letterSpacing={"0.5px"} fontSize={"20"}>Email : {data?.email}</Text>
               <Text fontFamily={'DM Serif Display'} paddingBottom={"20px"}  letterSpacing={"0.5px"}  fontSize={"20"}>City  : {data?.city}</Text>
+              
+            <Button
+               borderRadius={0}
+              colorScheme="white"
+              fontSize="16"
+              w="100%"
+              fontWeight="400"
+              bg="#79ab2f"
+              _hover={{ bgColor: "#df8c09" }}
+              letterSpacing={"1px"}
+              onClick={()=>{
+                setSignOpen(!SignOpen)
+               }}
+            >
+              EDIT PROFILE
+            </Button>
+            {SignOpen && <EditModel
+            onOpens={SignOpen} 
+            LetClose={SignClose} />}
             </Box>
           </Flex>
 

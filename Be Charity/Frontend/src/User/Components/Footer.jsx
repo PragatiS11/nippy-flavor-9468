@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-          <Box fontFamily={"Poppins"}   m={"100px"} style={{
+          <Box fontFamily={"Poppins"}   m={["10px","100px"]} style={{
       backgroundImage: `url('https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-wrapbg1.jpg')`,
       backgroundSize: "cover",
    height:"450px",
@@ -25,19 +25,19 @@ but everyone can help someone.</Text>
       </Flex>
 
       </Box>
-      <Box m={"100px"}>
-        <Flex w={"80%"} m={"auto"} justifyContent={"space-between"}>
-          <Flex w={"50%"} justifyContent={"space-evenly"} alignItems={"center"}>
+      <Box m={["20px","100px"]}>
+        <Flex w={["100%","80%"]} direction={["column","row"]} m={"auto"} justifyContent={"space-between"}>
+          <Flex w={["100%","50%"]} m={["10px auto","auto"]} justifyContent={"space-evenly"} alignItems={"center"}>
             <Box>
               <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-contact-icon1.png"></Image>
             </Box>
             <Box>
-              <Text fontFamily={"DM Serif Display"} fontSize={26}>
+              <Text fontFamily={"DM Serif Display"} fontSize={[26]}>
                 +61 (0) 383 766 284
               </Text>
             </Box>
           </Flex>
-          <Flex w={"50%"} justifyContent={"space-evenly"} alignItems={"center"}>
+          <Flex w={["100%","50%"]} m={["10px auto","auto"]} justifyContent={"space-evenly"} alignItems={"center"}>
             <Box>
               <Image src="https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/ngo2-contact-icon2.png"></Image>
             </Box>
@@ -47,7 +47,7 @@ but everyone can help someone.</Text>
               </Text>
             </Box>
           </Flex>
-          <Flex w={"40%"} justifyContent={"center"} alignItems={"center"}>
+          <Flex w={["100%","40%"]} m={["10px auto","auto"]} justifyContent={"center"} alignItems={"center"}>
             <Box w={"10%"} m={"auto 10px"}>
               <a href="https://www.facebook.com/">
                 <Image
