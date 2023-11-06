@@ -117,6 +117,8 @@ setFlag(!flag)
           organizer:datas.userData._id
         }
       }
+         
+          console.log(datas.userData)
 DonationRequest(a).then(res=>{
  console.log(res.data)
     setData(res.data)})

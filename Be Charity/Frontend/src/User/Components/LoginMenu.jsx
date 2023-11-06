@@ -35,6 +35,7 @@ import { LoginUser, LogoutUser, SingleUserData } from '../Redux/Auth/action';
 const LoginMenu = () => {
   const dispatch=useDispatch()
   const data=useSelector((store)=>(store.AuthReducer))
+  console.log(data.userData)
   const [SignOpen, setSignOpen] = useState(false);
 
   function SignClose() {
