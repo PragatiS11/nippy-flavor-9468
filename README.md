@@ -104,19 +104,17 @@ This is the single donation page where you can get more details of the fundraise
 
 This is where you will do the payment for the donation after that you will receive a thankyou mail.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o05msi3cbaocmdki8i76.png)
+
 
 #### Organizer Page  :-
 
 This access will be provided if he was a Volunteer, here he can add, edit or delete the donation he created.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3aisfbd6xzga5ogujhlr.png)
 
 #### Forget Password Page  :-
 
 If you forget your password or want to reset your password, you can give your email, then you will receive a link to change your password.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3aisfbd6xzga5ogujhlr.png)
 
 #### Reset Password Page  :-
 
@@ -135,7 +133,7 @@ You can view your profile here.
 
 You can edit your profile here.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3aisfbd6xzga5ogujhlr.png)
+
 
 ### Admin Page:-
 
@@ -143,7 +141,6 @@ You can edit your profile here.
 
 It shows graphs that are static. 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tmouldongut1ijkfv8id.png)
 
 #### User Page :-
 
@@ -161,13 +158,11 @@ You can view the user profile and payment history.
 
 Admin can edit user profile. 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/h7kv46hfor7tn4kwqdsl.png)
+
 
 #### Product Page :-
 
 You can see all the donations present in our site and you can also add donationt, delete and edit as well.
-
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/rclqbtyrudjemq75f4q9.png)
 
 
 
