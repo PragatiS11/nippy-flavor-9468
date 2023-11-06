@@ -49,50 +49,56 @@ Our project aims to raise funds for disadvantaged children in Africa. You can re
 #### Home Page :-
 This is the homepage of our website where we describe our goal.
 
-![Image description]()
+![Screenshot 2023-11-06 125856](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/6501f98f-e8e4-438d-9ba8-58d44ea991b6)
+
 
 #### Login Section :-
 Give your proper credential to get login.
 
-![Image description](https://themes.muffingroup.com/be/charity3/wp-content/uploads/2020/04/retina-ngo2.png)
+![Screenshot 2023-11-06 125948](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/72ccc7a8-572b-4b31-868b-cd1346e6b7db)
+
 
 #### SignUp Section :-
 
 This is where you can give you details to register your account into our website.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/to3wl1gvrjxr1fjiym5a.png)
+![Screenshot 2023-11-06 125953](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/95910d3e-93ba-4fba-af4b-dc931238015c)
+
 
 #### About Page :-
 
 You can get to know about our organiization.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lcwxnz2zaycddrvr7lad.png)
+![Screenshot 2023-11-06 125905](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/00937fbe-23df-44fc-a058-6a218550a210)
+
 
 
 #### Volunteer Page :-
 
 You can see the Volunteers of the organization.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fvotknfgc54pst4owktv.png)
+![Screenshot 2023-11-06 125929](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/37147624-7e45-4ee9-b375-7a86e4a38d47)
+
 
 #### Contact Page :-
 
 You can get connect with us.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l1gh383d16m55fgd62dd.png)
+![Screenshot 2023-11-06 125938](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/827c1b0a-3583-447f-a61b-9373aea78e57)
 
 #### Donate Us Page :-
 
 You can choose the fundraiser by Search and Filter method.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hz8tvpthhwmbvhd6rh9a.png)
+![Screenshot 2023-11-06 125919](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/082a8dea-2fc7-4277-bc0e-e7d86ace7628)
 
 
 #### Single Donation Page :-
 
 This is the single donation page where you can get more details of the fundraiser and you can donate also.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5v1z6x2b2vrx4akvx1ma.png)
+![Screenshot 2023-11-06 130817](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/05e68595-dacd-4a47-b220-e66f7a49444b)
+
 
 #### Payment Page  :-
 
@@ -116,7 +122,8 @@ If you forget your password or want to reset your password, you can give your em
 
 You can change your password.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3aisfbd6xzga5ogujhlr.png)
+![Screenshot 2023-11-06 130817](https://github.com/PragatiS11/nippy-flavor-9468/assets/121331649/a271d326-1536-45bd-a5ef-1be494f48cf4)
+
 
 #### User Profile Page  :-
 
