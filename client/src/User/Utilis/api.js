@@ -2,8 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const MainURL="https://charitybackend.vercel.app"
-// const MainURL="http://localhost:8000"
+ const MainURL="http://localhost:8080"
 
 const UserApi = MainURL+"/users";
 const DonationApi=MainURL+"/donation";
