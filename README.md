@@ -32,3 +32,10 @@ Our project aims to raise funds for disadvantaged children in Africa. You can re
 - Viewing The Users Details
 - Add & Edit & Delete Donations
 - Making User As Volunteer And Admin
+
+  
+| `Project Highlights` |
+| :------------------: |
+
+<img src= "https://github.com/PragatiS11/reactPracticeProject/blob/main/image/charity1.png?raw=true" alt= "image"/>
+<img src="https://github.com/PragatiS11/reactPracticeProject/blob/main/image/charity2.png?raw=true" alt="image"/>
