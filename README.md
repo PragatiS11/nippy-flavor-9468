@@ -3,8 +3,6 @@
 
 # Be Charity
 Our project aims to raise funds for disadvantaged children in Africa. You can register an account, log in, and contribute to the cause. Additionally, you have the opportunity to volunteer and create your own fundraising efforts. This project was a collaborative undertaking completed within a five-day timeframe.
-* User Page
-* Admin Page
 
 **Vercel :**  [Be Charity Website](https://charity-nu.vercel.app/)
 ## Tech Stack
